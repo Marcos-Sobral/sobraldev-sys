@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'perfil_id', 
     ];
 
     /**
@@ -43,8 +44,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function tecnologia()
+    public function perfil()
     {
-        return $this->hasMany(Tecnologia::class, 'user_id', 'id');
-    }
+        return $this->belongsTo(Perfil::class, 'perfil_id', 'perfil_id');
+    }    
 }
