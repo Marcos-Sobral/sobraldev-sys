@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\techController;
 use App\Http\Controllers\Admin\carrosselController;
 use App\Http\Controllers\Admin\projetoController;
@@ -10,7 +11,8 @@ use App\Http\Controllers\Admin\projetoCientificoController;
 
 
 //User
-Route::view('/', 'pages/index');
+Route::get('/',[Controller::class, 'index'])->name('principal');
+Route::view('/teste', 'welcome')->middleware(['auth','verified']);
 
 //ADMIN
 Route::middleware('Admin')->prefix('/admin')->group(function(){

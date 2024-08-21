@@ -2,7 +2,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid d-flex justify-content-between align-items-center mx-5 my-3">
           
-          <a class="navbar-brand d-flex align-items-center text-white" href="index.html">
+          <a class="navbar-brand d-flex align-items-center text-white" href="{{URL::route('principal')}}">
             <img src="{{ URL::asset('assets/img/logo/2.png') }}" alt="Logo" width="120" height="40" class="d-inline-block align-text-top me-2">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

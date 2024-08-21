@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function tecnologia()
+    {
+        return $this->hasMany(Tecnologia::class, 'user_id', 'id');
+    }
 }
