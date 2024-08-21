@@ -9,6 +9,7 @@ class Perfil extends Model
 {
     use HasFactory;
 
+    protected $table = "Perfil";
     protected $primaryKey = 'perfil_id';
 
        /**
