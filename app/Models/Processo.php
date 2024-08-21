@@ -17,8 +17,8 @@ class Processo extends Model
         'processo_img',
     ];
 
-    public function processo(){
-        return $this->belongsTo(Perfil::class,'processo_id','projeto_id');
+    public function projeto(){
+        return $this->belongsTo(Processo::class,'projeto_id','pr_projeto_id');
     }
 
     public function processoLink(){

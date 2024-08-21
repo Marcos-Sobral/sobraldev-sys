@@ -15,7 +15,7 @@ class ProcessoLink extends Model
         'processo_link_url',
     ];
 
-    public function processoLink(){
+    public function processo(){
         return $this->hasMany(Processo::class,'link_processo_id','processo_id');
     }
 }

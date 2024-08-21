@@ -18,11 +18,11 @@ class Projeto extends Model
     ];
 
     public function perfil(){
-        return $this->belongsTo(Perfil::class,'projeto_id','perfil_id');
+        return $this->belongsTo(Perfil::class,'pj_perfil_id','perfil_id');
     }
 
     public function processo(){
-        return $this->hasMany(Processo::class,'processo_id','projeto_id');
+        return $this->hasMany(Processo::class,'pr_projeto_id','projeto_id');
     }
 
 }

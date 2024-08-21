@@ -37,12 +37,12 @@ class Perfil extends Model
 
     public function carrosseis()
     {
-        return $this->hasMany(Carrossel::class, 'perfil_id', 'perfil_id');
+        return $this->hasMany(Carrossel::class, 'carrossel_perfil_id', 'perfil_id');
     }
 
     public function projetos()
     {
-        return $this->hasMany(Projeto::class, 'perfil_id', 'perfil_id');
+        return $this->hasMany(Projeto::class, 'pj_perfil_id', 'perfil_id');
     }
 
     public function projetosCientificos()
