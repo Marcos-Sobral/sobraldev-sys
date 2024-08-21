@@ -22,7 +22,7 @@ class Processo extends Model
     }
 
     public function processoLink(){
-        return $this->hasMany(Processo::class,'link_processo_id','processo_id');
+        return $this->hasMany(ProcessoLink::class,'link_processo_id','processo_id');
     }
 
 }
