@@ -27,7 +27,27 @@ class Perfil extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class, 'perfil_id', 'perfil_id');
+        return $this->hasMany(User::class, 'users_perfil_id', 'perfil_id'); //o primeiro é da tabela usuarios e outro é da tabela perfil
+    }
+
+    public function tecnologias()
+    {
+        return $this->hasMany(Tecnologia::class, 'perfil_id', 'perfil_id');
+    }
+
+    public function carrosseis()
+    {
+        return $this->hasMany(Carrossel::class, 'perfil_id', 'perfil_id');
+    }
+
+    public function projetos()
+    {
+        return $this->hasMany(Projeto::class, 'perfil_id', 'perfil_id');
+    }
+
+    public function projetosCientificos()
+    {
+        return $this->hasMany(ProjetoCientifico::class, 'perfil_id', 'perfil_id');
     }
     
 }

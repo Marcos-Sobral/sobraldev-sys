@@ -11,10 +11,14 @@ class Tecnologia extends Model
 
     protected $table = "tecnologias"; // Nome da tabela no banco de dados
     protected $primaryKey = "tech_id"; // Nome da chave primária
-    protected $fillable = ['tech_titulo', 'tech_img', 'user_id']; // Campos permitidos para atribuição em massa
+    protected $fillable = [
+        'tech_titulo',
+        'tech_img',
+        'perfil_id',
+    ];
 
-    public function user()
+    public function perfil()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'perfil_id', 'perfil_id');
     }
 }
