@@ -29,6 +29,6 @@ class Carrossel extends Model
     }
 
     public function carrosselLink(){
-        return $this->hasMany(Carrossel::class, 'carrossel_link_id','carrossel_perfil_id');
+        return $this->hasMany(CarrosselLink::class, 'Links_carrossel_id','carrossel_id');
     }
 }

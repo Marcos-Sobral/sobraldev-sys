@@ -13,9 +13,10 @@ class CarrosselLink extends Model
     protected $primaryKey = "carrossel_link_id"; // Nome da chave primária
     protected $fillable = [
         'carrossel_link_url',
+        'Links_carrossel_id',
     ];
 
-    public function carrosselLink(){
-        return $this->belongsTo(Carrossel::class,'carrossel_link_id','carrossel_id');
+    public function carrossel(){
+        return $this->belongsTo(Carrossel::class,'Links_carrossel_id','carrossel_id');
     }
 }

@@ -15,6 +15,7 @@ class Projeto extends Model
         'projeto_titulo',
         'projeto_descricao',
         'projeto_img',
+        'pj_perfil_id',
     ];
 
     public function perfil(){

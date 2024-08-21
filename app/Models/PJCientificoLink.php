@@ -13,9 +13,10 @@ class PJCientificoLink extends Model
     protected $primaryKey = "pj_cientificos_link_id"; // Nome da chave primária
     protected $fillable = [
         'pj_cientificos_url',
+        'link_projeto_cientifico_id',
     ];
 
     public function projetoCientifico(){
-        return $this->belongsTo(projetoCientifico::class,'pj_cientificos_link_id','pj_cientifico_id');
+        return $this->belongsTo(projetoCientifico::class,'link_projeto_cientifico_id','pj_cientifico_id');
     }
 }

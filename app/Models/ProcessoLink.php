@@ -13,9 +13,10 @@ class ProcessoLink extends Model
     protected $primaryKey = "processo_link_id"; // Nome da chave primária
     protected $fillable = [
         'processo_link_url',
+        'link_processo_id',
     ];
 
     public function processo(){
-        return $this->hasMany(ProcessoLink::class,'link_processo_id','processo_id');
+        return $this->belongsTo(Processo::class,'link_processo_id','processo_id');
     }
 }

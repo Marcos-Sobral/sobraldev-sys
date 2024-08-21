@@ -15,10 +15,11 @@ class Processo extends Model
         'processo_titulo',
         'processo_descricao',
         'processo_img',
+        'pr_projeto_id',
     ];
 
     public function projeto(){
-        return $this->belongsTo(Processo::class,'projeto_id','pr_projeto_id');
+        return $this->belongsTo(Projeto::class, 'pr_projeto_id','projeto_id');
     }
 
     public function processoLink(){

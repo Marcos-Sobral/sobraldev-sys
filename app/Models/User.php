@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'perfil_id', 
+        'users_perfil_id', 
     ];
 
     /**
@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function perfil()
     {
-        return $this->belongsTo(Perfil::class, 'perfil_id', 'users_perfil_id');
+        return $this->belongsTo(Perfil::class, 'users_perfil_id', 'perfil_id');
     }    
 }
