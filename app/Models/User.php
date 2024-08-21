@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'users_perfil_id', 
+        'users_perfil_id',
+        'is_admin', 
     ];
 
     /**
@@ -48,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Perfil::class, 'users_perfil_id', 'perfil_id');
     }    
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
 }

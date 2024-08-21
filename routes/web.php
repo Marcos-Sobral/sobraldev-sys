@@ -15,7 +15,7 @@ Route::get('/',[Controller::class, 'index'])->name('principal');
 Route::view('/teste', 'welcome')->middleware(['auth','verified']);
 
 //ADMIN
-Route::middleware('Admin')->prefix('/admin')->group(function(){
+Route::middleware('admin')->prefix('/admin')->group(function(){
     //tecnologia
     Route::prefix('/tecnologia')->group(function(){
         Route::get('/',[techController::class, 'index'])->name('admin.tech.index');
