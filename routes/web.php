@@ -7,12 +7,27 @@ use App\Http\Controllers\Admin\carrosselController;
 use App\Http\Controllers\Admin\projetoController;
 use App\Http\Controllers\Admin\processoController;
 use App\Http\Controllers\Admin\projetoCientificoController;
-
-
+use Illuminate\Support\Facades\Auth;
 
 //User
 Route::get('/',[Controller::class, 'index'])->name('principal');
-Route::view('/teste', 'welcome')->middleware(['auth','verified']);
+Route::view('/admin', 'welcome');
+
+Route::get('/test', [projetoController::class, 'index'], function () {
+    $user = Auth::users();
+    dd($user->isAdmin());
+})->middleware('auth');
+
+
+    //projeto
+    Route::prefix('/projeto')->middleware(['auth','admin'])->group(function(){
+        Route::get('/',[projetoController::class, 'index'])->name('admin.projeto.index');
+        Route::get('/criar',[projetoController::class, 'create'])->name('admin.projeto.create');
+        Route::post('/criar',[projetoController::class, 'store'])->name('admin.projeto.store');
+        Route::get('/editar/{id}',[projetoController::class, 'edit'])->name('admin.projeto.edit');
+        Route::put('/editar/{id}',[projetoController::class, 'update'])->name('admin.projeto.update');
+        Route::get('/deletar/{id}',[projetoController::class, 'destroy'])->name('admin.projeto.destroy');
+    });
 
 //ADMIN
 Route::middleware('admin')->prefix('/admin')->group(function(){
@@ -36,15 +51,7 @@ Route::middleware('admin')->prefix('/admin')->group(function(){
         Route::get('/deletar/{id}',[carrosselController::class, 'destroy'])->name('admin.carrossel.destroy');
     });
 
-    //projeto
-    Route::prefix('/projeto')->group(function(){
-        Route::get('/',[projetoController::class, 'index'])->name('admin.projeto.index');
-        Route::get('/criar',[projetoController::class, 'create'])->name('admin.projeto.create');
-        Route::post('/criar',[projetoController::class, 'store'])->name('admin.projeto.store');
-        Route::get('/editar/{id}',[projetoController::class, 'edit'])->name('admin.projeto.edit');
-        Route::put('/editar/{id}',[projetoController::class, 'update'])->name('admin.projeto.update');
-        Route::get('/deletar/{id}',[projetoController::class, 'destroy'])->name('admin.projeto.destroy');
-    });
+
 
     //Processos de projetos
     Route::prefix('/processo')->group(function(){

@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('users_perfil_id')->nullable()->constrained('perfil','perfil_id')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreignId('users_perfil_id')->nullable()->constrained('perfil','perfil_id')->onDelete('cascade');
+            $table->boolean('is_admin')->default(false);
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user');
     }
 };

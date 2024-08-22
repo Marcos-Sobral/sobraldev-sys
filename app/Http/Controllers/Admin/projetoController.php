@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class projetoController extends Controller
 {
@@ -12,7 +12,7 @@ class projetoController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.projetos.index');
     }
 
     /**
