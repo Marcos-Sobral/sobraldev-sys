@@ -35,8 +35,23 @@ new class extends Component
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('principal')" :active="request()->routeIs('index')" wire:navigate>
+                    <x-nav-link :href="route('admin.projeto.index')" :active="request()->routeIs('admin.projeto.index')" wire:navigate>
                         {{ __('Projetos') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.cientifico.index')" :active="request()->routeIs('admin.cientifico.index')" wire:navigate>
+                        {{ __('Projetos Cientificos') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.tech.index')" :active="request()->routeIs('admin.tech.index')" wire:navigate>
+                        {{ __('Tecnologias') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.carrossel.index')" :active="request()->routeIs('admin.carrossel.index')" wire:navigate>
+                        {{ __('Carrossel') }}
                     </x-nav-link>
                 </div>
             </div>

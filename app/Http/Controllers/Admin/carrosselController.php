@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 class carrosselController extends Controller
 {
     /**
@@ -12,7 +11,7 @@ class carrosselController extends Controller
      */
     public function index()
     {
-        //
+        return view("pages.carrossel.index");
     }
 
     /**
