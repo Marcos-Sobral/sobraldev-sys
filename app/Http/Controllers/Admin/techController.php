@@ -76,35 +76,35 @@ class techController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tecnologia = Tecnologia::findOrFail($id);
-    
         // Validação dos dados
         $request->validate([
             'tech_titulo' => 'required|string|max:255',
-            'tech_img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'perfil_id' => 'required|exists:perfil,perfil_id',
+            'tech_img' => 'nullable|image',
+            'perfil_id' => 'required|exists:perfil,perfil_id'
         ]);
     
-        // Atualizar o título e o perfil
+        // Encontrar a tecnologia pelo ID
+        $tecnologia = Tecnologia::findOrFail($id);
+    
+        // Atualizar o título e perfil_id
         $tecnologia->tech_titulo = $request->input('tech_titulo');
         $tecnologia->perfil_id = $request->input('perfil_id');
     
-        // Verificar se uma nova imagem foi enviada
+        // Verificar se foi enviada uma nova imagem
         if ($request->hasFile('tech_img')) {
-            // Excluir a imagem antiga, se existir
+            // Excluir a imagem antiga se existir
             if ($tecnologia->tech_img && Storage::exists('public/' . $tecnologia->tech_img)) {
                 Storage::delete('public/' . $tecnologia->tech_img);
             }
     
-            // Salvar a nova imagem
-            $path = $request->file('tech_img')->store('images', 'public');
-            $tecnologia->tech_img = $path;
+            // Armazenar a nova imagem
+            $tecnologia->tech_img = $request->file('tech_img')->store('images', 'public');
         }
     
         // Salvar as alterações
         $tecnologia->save();
     
-        // Redirecionar de volta com uma mensagem de sucesso
+        // Redirecionar com uma mensagem de sucesso
         return redirect()->route('admin.tech.index')->with('success', 'Tecnologia atualizada com sucesso!');
     }
     
@@ -112,10 +112,20 @@ class techController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($tecnologia)
+    public function destroy($id)
     {
-        $tecn = Tecnologia::findOrFail($tecnologia);
-        $tecn->delete();
-        return redirect()->route('admin.tech.index')->with('success', 'Tecnologia removida com sucesso.');
+        $tecnologia = Tecnologia::findOrFail($id);
+    
+        // Verificar se a tecnologia tem uma imagem associada e se ela existe no storage
+        if ($tecnologia->tech_img && Storage::exists('public/' . $tecnologia->tech_img)) {
+            // Excluir a imagem do storage
+            Storage::delete('public/' . $tecnologia->tech_img);
+        }
+    
+        // Deletar a tecnologia do banco de dados
+        $tecnologia->delete();
+    
+        // Redirecionar de volta com uma mensagem de sucesso
+        return redirect()->route('admin.tech.index')->with('success', 'Tecnologia excluída com sucesso!');
     }
 }
