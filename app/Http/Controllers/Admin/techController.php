@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Livewire\Tecnologias;
 use App\Models\Perfil;
 use App\Models\Tecnologia;
 use Illuminate\Http\Request;
@@ -40,15 +39,16 @@ class techController extends Controller
             'tech_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adicionando tipos de arquivos permitidos e limite de tamanho
             'perfil_id' => 'required|exists:perfil,perfil_id' // Garantindo que perfil_id existe na tabela perfis
         ]);
-    
+
         // Processamento da imagem
         if ($request->hasFile('tech_img')) {
-            $validatedData['tech_img'] = $request->file('tech_img')->store('images', 'public');
+            // Armazenando a imagem na pasta 'tech_icon'
+            $validatedData['tech_img'] = $request->file('tech_img')->store('tech_icon', 'public');
         }
-    
+
         // Criação do registro na tabela
         Tecnologia::create($validatedData);
-    
+
         // Redirecionamento com mensagem de sucesso
         return redirect()->route('admin.tech.index')->with('success', 'Tecnologia criada com sucesso.');
     }
@@ -82,32 +82,31 @@ class techController extends Controller
             'tech_img' => 'nullable|image',
             'perfil_id' => 'required|exists:perfil,perfil_id'
         ]);
-    
+
         // Encontrar a tecnologia pelo ID
         $tecnologia = Tecnologia::findOrFail($id);
-    
+
         // Atualizar o título e perfil_id
         $tecnologia->tech_titulo = $request->input('tech_titulo');
         $tecnologia->perfil_id = $request->input('perfil_id');
-    
+
         // Verificar se foi enviada uma nova imagem
         if ($request->hasFile('tech_img')) {
             // Excluir a imagem antiga se existir
             if ($tecnologia->tech_img && Storage::exists('public/' . $tecnologia->tech_img)) {
                 Storage::delete('public/' . $tecnologia->tech_img);
             }
-    
-            // Armazenar a nova imagem
-            $tecnologia->tech_img = $request->file('tech_img')->store('images', 'public');
+
+            // Armazenar a nova imagem na pasta 'tech_icon'
+            $tecnologia->tech_img = $request->file('tech_img')->store('tech_icon', 'public');
         }
-    
+
         // Salvar as alterações
         $tecnologia->save();
-    
+
         // Redirecionar com uma mensagem de sucesso
         return redirect()->route('admin.tech.index')->with('success', 'Tecnologia atualizada com sucesso!');
     }
-    
 
     /**
      * Remove the specified resource from storage.
@@ -115,16 +114,16 @@ class techController extends Controller
     public function destroy($id)
     {
         $tecnologia = Tecnologia::findOrFail($id);
-    
+
         // Verificar se a tecnologia tem uma imagem associada e se ela existe no storage
         if ($tecnologia->tech_img && Storage::exists('public/' . $tecnologia->tech_img)) {
             // Excluir a imagem do storage
             Storage::delete('public/' . $tecnologia->tech_img);
         }
-    
+
         // Deletar a tecnologia do banco de dados
         $tecnologia->delete();
-    
+
         // Redirecionar de volta com uma mensagem de sucesso
         return redirect()->route('admin.tech.index')->with('success', 'Tecnologia excluída com sucesso!');
     }
