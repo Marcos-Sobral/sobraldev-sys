@@ -21,8 +21,9 @@ Route::middleware("auth",'admin')->prefix('/admin')->group(function(){
         Route::get('/criar', [techController::class, 'create'])->name('admin.tech.create');
         Route::post('/criar', [techController::class, 'store'])->name('admin.tech.store');
         Route::get('/editar/{id}', [techController::class, 'edit'])->name('admin.tech.edit');
-        Route::put('/editar/{id}', [techController::class, 'update'])->name('admin.tech.update');
-        Route::delete('/deletar/{id}', [techController::class, 'destroy'])->name('admin.tech.destroy');
+        Route::put('editar/{id}', [TechController::class, 'update'])->name('admin.tech.update');
+        route::delete('/deletar/{id}', [techController::class, 'destroy'])->name('admin.tech.destroy');
+
     });
 
     //Carrossel

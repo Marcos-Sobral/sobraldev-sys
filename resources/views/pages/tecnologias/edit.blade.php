@@ -3,37 +3,43 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+
                     <h1 class="text-2xl font-bold mb-4">Editar Tecnologia</h1>
                     <form action="{{ route('admin.tech.update', $tecnologia->tech_id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT') <!-- Método PUT para atualização -->
+                        @method('PUT')
+
                         <div class="mb-4">
-                            <label for="tech_titulo" class="block text-sm font-medium text-gray-700">Título</label>
-                            <input type="text" name="tech_titulo" id="tech_titulo" class="mt-1 block w-full text-black shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ old('tech_titulo', $tecnologia->tech_titulo) }}">
-                            @error('tech_titulo')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
+                            <x-input-label for="tech_titulo" :value="__('Título')" />
+                            <x-text-input id="tech_titulo" class="block mt-1 w-full" type="text" name="tech_titulo" value="{{ old('tech_titulo', $tecnologia->tech_titulo) }}" autofocus />
+                            <x-input-error :messages="$errors->get('tech_titulo')" class="mt-2" />
                         </div>
+
                         <div class="mb-4">
-                            <label for="tech_img" class="block text-sm font-medium text-gray-700">Imagem</label>
-                            <input type="file" name="tech_img" id="tech_img" class="mt-1 block w-full text-sm text-gray-500 border-gray-300 rounded-md">
-                            @error('tech_img')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
+                            <x-input-label for="tech_img" :value="__('Imagem')" />
+                            <input id="tech_img" class="block mt-1 w-full" type="file" name="tech_img" />
+                            <x-input-error :messages="$errors->get('tech_img')" class="mt-2" />
+
+                            @if ($tecnologia->tech_img)
+                                <div class="mt-4">
+                                    <span class="block text-sm text-gray-600 dark:text-gray-400">Imagem Atual:</span>
+                                    <img src="{{ asset('storage/' . $tecnologia->tech_img) }}" width="150" class="rounded mt-2">
+                                </div>
+                            @endif
                         </div>
+
                         <div class="mb-4">
-                            <label for="perfil_id" class="block text-sm font-medium text-gray-700">Perfil</label>
-                            <select name="perfil_id" id="perfil_id" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <x-input-label for="perfil_id" :value="__('Perfil')" />
+                            <select id="perfil_id" name="perfil_id" class="block mt-1 w-full bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring focus:ring-indigo-200 dark:focus:ring-indigo-900 rounded-md shadow-sm">
                                 @foreach ($perfis as $perfil)
                                     <option value="{{ $perfil->perfil_id }}" {{ $perfil->perfil_id == $tecnologia->perfil_id ? 'selected' : '' }}>
                                         {{ $perfil->perfil_nome }}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('perfil_id')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
+                            <x-input-error :messages="$errors->get('perfil_id')" class="mt-2" />
                         </div>
+
                         <button type="submit" class="btn btn-primary">Atualizar</button>
                     </form>
                 </div>
