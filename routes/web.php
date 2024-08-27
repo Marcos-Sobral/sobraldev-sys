@@ -41,21 +41,22 @@ Route::middleware("auth",'admin')->prefix('/admin')->group(function(){
         Route::get('/',[projetoController::class, 'index'])->name('admin.projeto.index');
         Route::get('/criar',[projetoController::class, 'create'])->name('admin.projeto.create');
         Route::post('/criar',[projetoController::class, 'store'])->name('admin.projeto.store');
+        Route::get('/processos/{id}', [ProjetoController::class, 'show'])->name('admin.projeto.show');
         Route::get('/editar/{id}',[projetoController::class, 'edit'])->name('admin.projeto.edit');
         Route::put('/editar/{id}',[projetoController::class, 'update'])->name('admin.projeto.update');
-        Route::get('/deletar/{id}',[projetoController::class, 'destroy'])->name('admin.projeto.destroy');
+        Route::delete('/deletar/{id}',[projetoController::class, 'destroy'])->name('admin.projeto.destroy');
     });
 
     //Processos de projetos
     Route::prefix('/processo')->group(function(){
         Route::get('/',[processoController::class, 'index'])->name('admin.processo.index');
+        Route::get('/ver',[processoController::class, 'show'])->name('admin.processo.show');
         Route::get('/criar',[processoController::class, 'create'])->name('admin.processo.create');
         Route::post('/criar',[processoController::class, 'store'])->name('admin.processo.store');
         Route::get('/editar/{id}',[processoController::class, 'edit'])->name('admin.processo.edit');
         Route::put('/editar/{id}',[processoController::class, 'update'])->name('admin.processo.update');
         Route::get('/deletar/{id}',[processoController::class, 'destroy'])->name('admin.processo.destroy');
     });
-
     //projetoCientifico
     Route::prefix('/cientifico')->group(function(){
         Route::get('/', [pj_cientificoController::class, 'index'])->name('admin.cientifico.index');

@@ -22,7 +22,7 @@ class Projeto extends Model
         return $this->belongsTo(Perfil::class,'pj_perfil_id','perfil_id');
     }
 
-    public function processo(){
+    public function processos(){
         return $this->hasMany(Processo::class,'pr_projeto_id','projeto_id');
     }
 
