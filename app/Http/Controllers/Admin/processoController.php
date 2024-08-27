@@ -50,7 +50,9 @@ class ProcessoController extends Controller
 
         $processo = Processo::create($validated);
 
-        return redirect()->route('admin.projeto.show')->with('success', 'Processo criado com sucesso.');
+
+        return redirect()->route('admin.projeto.show', ['id' => $processo->pr_projeto_id])
+        ->with('success', 'Processo adicionado com sucesso!');
     }
 
     /**
@@ -104,25 +106,27 @@ class ProcessoController extends Controller
 
         $processo->save();
 
-        return redirect()->route('admin.projeto.show')->with('success', 'Processo atualizado com sucesso!');
+        return redirect()->route('admin.projeto.show', ['id' => $processo->pr_projeto_id])
+        ->with('success', 'Processo atualizado com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $processo = Processo::findOrFail($id);
-
+    
         // Excluir a imagem associada se existir
         if ($processo->processo_img && Storage::exists('public/' . $processo->processo_img)) {
             Storage::delete('public/' . $processo->processo_img);
         }
-
+    
         // Remover os links associados
         $processo->processoLink()->delete();
-
+    
         $processo->delete();
-        return redirect()->route('admin.processo.index')->with('success', 'Processo excluído com sucesso!');
+        return redirect()->route('admin.projeto.index')->with('success', 'Projeto excluído com sucesso!');
     }
+    
 }

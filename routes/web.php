@@ -23,7 +23,6 @@ Route::middleware("auth",'admin')->prefix('/admin')->group(function(){
         Route::get('/editar/{id}', [techController::class, 'edit'])->name('admin.tech.edit');
         Route::put('editar/{id}', [TechController::class, 'update'])->name('admin.tech.update');
         route::delete('/deletar/{id}', [techController::class, 'destroy'])->name('admin.tech.destroy');
-
     });
 
     //Carrossel
@@ -33,7 +32,7 @@ Route::middleware("auth",'admin')->prefix('/admin')->group(function(){
         Route::post('/criar',[carrosselController::class, 'store'])->name('admin.carrossel.store');
         Route::get('/editar/{id}',[carrosselController::class, 'edit'])->name('admin.carrossel.edit');
         Route::put('/editar/{id}',[carrosselController::class, 'update'])->name('admin.carrossel.update');
-        Route::get('/deletar/{id}',[carrosselController::class, 'destroy'])->name('admin.carrossel.destroy');
+        Route::delete('/deletar/{id}',[carrosselController::class, 'destroy'])->name('admin.carrossel.destroy');
     });
 
     //projeto
@@ -48,14 +47,15 @@ Route::middleware("auth",'admin')->prefix('/admin')->group(function(){
     });
 
     //Processos de projetos
-    Route::prefix('/processo')->group(function(){
+    Route::prefix('/processos')->group(function(){
         Route::get('/',[processoController::class, 'index'])->name('admin.processo.index');
         Route::get('/ver',[processoController::class, 'show'])->name('admin.processo.show');
         Route::get('/criar',[processoController::class, 'create'])->name('admin.processo.create');
         Route::post('/criar',[processoController::class, 'store'])->name('admin.processo.store');
         Route::get('/editar/{id}',[processoController::class, 'edit'])->name('admin.processo.edit');
         Route::put('/editar/{id}',[processoController::class, 'update'])->name('admin.processo.update');
-        Route::get('/deletar/{id}',[processoController::class, 'destroy'])->name('admin.processo.destroy');
+        Route::delete('/deletar/{id}',[processoController::class, 'destroy'])->name('admin.processo.destroy');
+
     });
     //projetoCientifico
     Route::prefix('/cientifico')->group(function(){
@@ -64,7 +64,7 @@ Route::middleware("auth",'admin')->prefix('/admin')->group(function(){
         Route::post('/criar',[pj_cientificoController::class, 'store'])->name('admin.cientifico.store');
         Route::get('/editar/{id}',[pj_cientificoController::class, 'edit'])->name('admin.cientifico.edit');
         Route::put('/editar/{id}',[pj_cientificoController::class, 'update'])->name('admin.cientifico.update');
-        Route::get('/deletar/{id}',[pj_cientificoController::class, 'destroy'])->name('admin.cientifico.destroy');
+        Route::delete('/deletar/{id}',[pj_cientificoController::class, 'destroy'])->name('admin.cientifico.destroy');
     });
 
 });
