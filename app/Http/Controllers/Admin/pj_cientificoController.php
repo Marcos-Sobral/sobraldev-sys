@@ -86,33 +86,22 @@ class pj_cientificoController extends Controller
     
         // Atualiza ou cria o link científico
         if ($request->filled('pj_cientificos_url')) {
-            $link = $pj_cientifico->projetoCientificoLink()->first();
-            if ($link) {
-                // Atualiza o link existente
-                $link->update([
-                    'pj_cientificos_url' => $request->pj_cientificos_url,
-                    'pj_cientificos_link_nome' => $request->pj_cientificos_link_nome,
-                ]);
-            } else {
-                // Cria um novo link, se não houver um existente
-                PJCientificoLink::create([
-                    'projeto_cientifico_id' => $pj_cientifico->id,
-                    'pj_cientificos_url' => $request->pj_cientificos_url,
-                    'pj_cientificos_link_nome' => $request->pj_cientificos_link_nome,
-                ]);
-            }
-        } else {
-            // Se o URL não for fornecido, apaga todos os links existentes, se houver
-            $links = $pj_cientifico->projetoCientificoLink;
-            if ($links) {
-                foreach ($links as $link) {
-                    $link->delete();
-                }
-            }
+            // Remove o link antigo, se existir
+            $pj_cientifico->projetoCientificoLink()->delete();
+    
+            // Cria um novo link
+            PJCientificoLink::create([
+                'link_projeto_cientifico_id' => $pj_cientifico->pj_cientifico_id,
+                'pj_cientificos_url' => $request->pj_cientificos_url,
+                'pj_cientificos_link_nome' => $request->pj_cientificos_link_nome,
+                'pj_cientificos_link_class' => $request->pj_cientificos_link_class ?? 'btn-outline-primary',
+            ]);
         }
     
         return redirect()->route('admin.cientifico.index')->with('success', 'Projeto Científico atualizado com sucesso!');
     }
+    
+    
     
 
     
