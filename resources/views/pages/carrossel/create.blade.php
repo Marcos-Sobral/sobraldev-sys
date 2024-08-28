@@ -48,6 +48,14 @@
                             <x-input-error :messages="$errors->get('perfil_id')" class="mt-2" />
                         </div>
 
+                        <!-- Link do Projeto Científico -->
+                        <div class="mb-4">
+                            <x-input-label for="pj_cientificos_url" :value="__('Link do Projeto Científico')" />
+                            <x-text-input id="pj_cientificos_url" class="block mt-1 w-full" type="url" name="pj_cientificos_url" value="{{ old('pj_cientificos_url') }}" />
+                            <x-input-error :messages="$errors->get('pj_cientificos_url')" class="mt-2" />
+                        </div>
+
+
                         <!-- Link do Carrossel -->
                         <div class="mb-4">
                             <x-input-label for="carrossel_link_url" :value="__('Link do Carrossel')" />
