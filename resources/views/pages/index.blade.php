@@ -12,7 +12,7 @@
     <livewire:header />
 
     <main>
-        <livewire:carrossel />
+        <livewire:carrossell />
 
         <livewire:tecnologias />
 

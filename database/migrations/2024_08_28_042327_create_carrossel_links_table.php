@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('carrossel_links', function (Blueprint $table) {
             $table->id('carrossel_link_id');
             $table->string('carrossel_link_url');
+            $table->string('carrossel_link_nome')->nullable();
+            $table->string('carrossel_link_class')->nullable()->default('btn-outline-primary'); 
+            $table->timestamps();
             $table->foreignId('Links_carrossel_id')->nullable()->constrained('carrossel','carrossel_id')->onDelete('cascade');
+
         });
     }
 
@@ -26,3 +30,5 @@ return new class extends Migration
         Schema::dropIfExists('carrossel_links');
     }
 };
+
+

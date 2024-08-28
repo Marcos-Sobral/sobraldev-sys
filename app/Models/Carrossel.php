@@ -9,6 +9,7 @@ class Carrossel extends Model
 {
     use HasFactory;
 
+    protected $table = "carrossel";
     protected $primaryKey = 'carrossel_id';
 
        /**
