@@ -38,7 +38,7 @@
                                                     </form>
                                                 </div>
                                                 <small class="text-body-secondary">
-                                                    {{ $processo->created_at ? $processo->created_at->format('Y/m') : 'Data não disponível' }}
+                                                    {{ $processo->created_at ? $processo->updated_at->format('Y/m') : 'Data não disponível' }}
                                                 </small>
                                             </div>
                                         </div>

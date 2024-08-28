@@ -26,9 +26,9 @@
                                 @foreach($projeto->processos as $processo)
                                     <div class="col">
                                         <div class="card shadow-sm">
-                                            <img src="{{ Storage::url($processo->processo_img) }}" class="img img-thumbnail rounded w-20" alt="{{ $processo->processo_nome }}">
+                                            <img src="{{ Storage::url($processo->processo_img) }}" class="img img-thumbnail rounded w-20" alt="{{ $processo->processo_titulo }}">
                                             <div class="card-body">
-                                                <h2 class="featurette-heading fw-normal lh-1 text-wrap">{{ $processo->processo_nome }}</h2>
+                                                <h2 class="featurette-heading fw-normal lh-1 text-wrap">{{ $processo->processo_titulo }}</h2>
                                                 <p class="card-text">{{ $processo->processo_descricao }}</p>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group">
@@ -38,7 +38,7 @@
                                                             </a>
                                                         @endforeach
                                                     </div>
-                                                    <small class="text-body-secondary">{{ $processo->data ?? 'Data não disponível' }}</small>
+                                                    <small class="text-body-secondary">{{ $processo->updated_at->format('Y/m') ?? 'Data não disponível' }}</small>
                                                 </div>
                                             </div>
                                         </div>

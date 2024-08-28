@@ -102,7 +102,6 @@ class ProcessoController extends Controller
             'processo_descricao' => 'nullable|string|max:255',
             'processo_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'pr_projeto_id' => 'required|exists:projetos,projeto_id',
-            'links.*.id' => 'nullable|exists:processo_links,id',
             'links.*.processo_link_nome' => 'nullable|string|max:255',
             'links.*.processo_link_url' => 'nullable|url',
             'links.*.processo_link_class' => 'nullable|string',
@@ -119,31 +118,27 @@ class ProcessoController extends Controller
         // Atualizar o processo
         $processo->update($validated);
     
-        // Atualize ou crie os links
-        $linksData = $request->input('links', []);
-        foreach ($linksData as $linkData) {
-            if (isset($linkData['id'])) {
-                $link = ProcessoLink::find($linkData['id']);
-                if ($link) {
-                    $link->update([
-                        'processo_link_nome' => $linkData['processo_link_nome'] ?? '',
-                        'processo_link_url' => $linkData['processo_link_url'] ?? '',
-                        'processo_link_class' => $linkData['processo_link_class'] ?? '',
+        // Excluir todos os links antigos
+        $processo->processoLinks()->delete();
+    
+        // Criar os novos links
+        if ($request->has('links')) {
+            foreach ($request->input('links') as $linkData) {
+                if (!empty($linkData['processo_link_nome']) && !empty($linkData['processo_link_url'])) {
+                    ProcessoLink::create([
+                        'link_processo_id' => $processo->processo_id,
+                        'processo_link_nome' => $linkData['processo_link_nome'],
+                        'processo_link_url' => $linkData['processo_link_url'],
+                        'processo_link_class' => $linkData['processo_link_class'],
                     ]);
                 }
-            } else {
-                ProcessoLink::create([
-                    'link_processo_id' => $processo->processo_id, // Use a chave estrangeira correta
-                    'processo_link_nome' => $linkData['processo_link_nome'] ?? '',
-                    'processo_link_url' => $linkData['processo_link_url'] ?? '',
-                    'processo_link_class' => $linkData['processo_link_class'] ?? '',
-                ]);
             }
         }
     
         return redirect()->route('admin.projeto.show', ['id' => $processo->pr_projeto_id])
             ->with('success', 'Processo atualizado com sucesso!');
     }
+    
     
 
     /**
