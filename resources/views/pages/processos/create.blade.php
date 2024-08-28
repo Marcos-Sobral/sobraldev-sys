@@ -3,7 +3,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-
                     <h1 class="fs-2 text-center font-bold mb-4">Criar Novo Processo</h1>
 
                     <form action="{{ route('admin.processo.store') }}" method="POST" enctype="multipart/form-data">
@@ -48,6 +47,17 @@
                             @enderror
                         </div>
 
+                        <!-- Adicionar seção para links -->
+                        <div id="links-section">
+                            <h2 class="fs-4 mb-3">Links do Processo</h2>
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-success" onclick="addLink()">Adicionar Link</button>
+                            </div>
+                            <div id="links-container">
+                                <!-- Links serão adicionados aqui via JavaScript -->
+                            </div>
+                        </div>
+
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Criar Processo</button>
                             <a href="{{ route('admin.processo.index') }}" class="btn btn-secondary">Cancelar</a>
@@ -57,4 +67,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function addLink() {
+            const container = document.getElementById('links-container');
+            const index = container.children.length;
+
+            const linkDiv = document.createElement('div');
+            linkDiv.classList.add('mb-3');
+
+            linkDiv.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <input type="text" name="links[${index}][processo_link_nome]" class="form-control" placeholder="Nome do Link" required>
+                    <input type="url" name="links[${index}][processo_link_url]" class="form-control ms-2" placeholder="URL do Link" required>
+                    <input type="text" name="links[${index}][processo_link_class]" class="form-control ms-2" placeholder="Classe do Link">
+                    <button type="button" class="btn btn-danger ms-2" onclick="removeLink(this)">Remover</button>
+                </div>
+            `;
+
+            container.appendChild(linkDiv);
+        }
+
+        function removeLink(button) {
+            const container = document.getElementById('links-container');
+            container.removeChild(button.parentElement);
+        }
+    </script>
 </x-app-layout>

@@ -13,7 +13,8 @@ class Controller extends BaseController
 
     public function index()
     {
-        return view('pages.index');
+        $projetos = Projeto::all();
+        return view('pages.index',compact('projetos'));
     }
 }
 

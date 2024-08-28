@@ -13,10 +13,12 @@ class ProcessoLink extends Model
     protected $primaryKey = "processo_link_id"; // Nome da chave primária
     protected $fillable = [
         'processo_link_url',
+        'processo_link_nome',  // Nome do botão
+        'processo_link_class', // Classe de estilo do botão
         'link_processo_id',
     ];
 
     public function processo(){
-        return $this->belongsTo(Processo::class,'link_processo_id','processo_id');
+        return $this->belongsTo(Processo::class, 'link_processo_id', 'processo_id');
     }
 }

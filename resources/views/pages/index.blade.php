@@ -17,7 +17,7 @@
         <livewire:tecnologias />
 
         <livewire:projetos />
-
+            
         <hr class="featurette-divider">
         <livewire:projetos_cientificos />
 

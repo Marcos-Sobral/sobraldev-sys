@@ -19,11 +19,12 @@ class Processo extends Model
     ];
 
     public function projeto(){
-        return $this->belongsTo(Projeto::class, 'pr_projeto_id','projeto_id');
+        return $this->belongsTo(Projeto::class, 'pr_projeto_id', 'projeto_id');
     }
 
-    public function processoLink(){
-        return $this->hasMany(ProcessoLink::class,'link_processo_id','processo_id');
+    // Definir o relacionamento com o modelo Link
+    public function processoLinks()
+    {
+        return $this->hasMany(ProcessoLink::class, 'link_processo_id'); // Ajuste 'Link::class' e 'processo_id' conforme suas necessidades
     }
-
 }
