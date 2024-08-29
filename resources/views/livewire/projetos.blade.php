@@ -20,5 +20,4 @@
             @endforeach
         </div><!-- /.row -->
     </div>
-    @livewire('tecnologias')
 </div>
