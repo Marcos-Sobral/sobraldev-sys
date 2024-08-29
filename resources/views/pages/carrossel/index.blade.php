@@ -15,13 +15,20 @@
                                     @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $carrossel->carrossel_titulo }}</h5>
-                                        <a href="{{ route('admin.carrossel.edit', $carrossel->carrossel_id) }}" class="btn btn-outline-primary">Editar</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <a href="{{ route('admin.carrossel.edit', $carrossel->carrossel_id) }}" class="btn btn-outline-primary">Editar</a>
 
-                                        <form action="{{ route('admin.carrossel.destroy', $carrossel->carrossel_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja excluir?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger">Excluir</button>
-                                        </form>
+                                                <form action="{{ route('admin.carrossel.destroy', $carrossel->carrossel_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger">Excluir</button>
+                                                </form>
+                                            </div>
+                                            <small class="text-body-secondary text-right">
+                                                {{ $carrossel->created_at ? $carrossel->updated_at->format('Y/m') : 'Data não disponível' }}
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

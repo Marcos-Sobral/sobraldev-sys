@@ -15,13 +15,20 @@
                                     @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $tecnologia->tech_titulo }}</h5>
-                                        <a href="{{ route('admin.tech.edit', $tecnologia->tech_id) }}" class="btn btn-outline-primary">Editar</a>
-
-                                        <form action="{{ route('admin.tech.destroy', $tecnologia->tech_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja excluir?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger">Excluir</button>
-                                        </form>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <a href="{{ route('admin.tech.edit', $tecnologia->tech_id) }}" class="btn btn-outline-primary">Editar</a>
+        
+                                                <form action="{{ route('admin.tech.destroy', $tecnologia->tech_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger">Excluir</button>
+                                                </form>
+                                            </div>
+                                            <small class="text-body-secondary text-right">
+                                                {{ $tecnologia->created_at ? $tecnologia->updated_at->format('Y/m') : 'Data não disponível' }}
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
