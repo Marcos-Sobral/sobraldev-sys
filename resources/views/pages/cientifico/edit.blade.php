@@ -3,7 +3,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1 class="text-2xl font-bold mb-4">Editar Projeto Científico</h1>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary text-left">Voltar</a>
+                    <h1 class="text-2xl text-center font-bold mb-4">Editar Projeto Científico</h1>
 
                     <form action="{{ route('admin.cientifico.update', $projetosCientificos->pj_cientifico_id) }}" method="POST" enctype="multipart/form-data">
                         @csrf

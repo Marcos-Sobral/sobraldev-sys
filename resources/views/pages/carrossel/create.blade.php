@@ -3,6 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary text-left">Voltar</a>
                     <h1 class="fs-2 text-center font-bold mb-4">Criar Novo Carrossel</h1>
 
                     <form action="{{ route('admin.carrossel.store') }}" method="POST" enctype="multipart/form-data">
