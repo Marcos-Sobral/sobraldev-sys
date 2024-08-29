@@ -14,14 +14,22 @@
                                         <img src="{{ asset('storage/' . $pj_cientifico->pj_cientifico_img) }}" class="card-img-top img-fluid" alt="{{ $pj_cientifico->pj_cientifico_titulo }}" style="max-height: 150px; object-fit: cover;">
                                     @endif
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ $pj_cientifico->pj_cientifico_titulo }}</h5>
-                                        <a href="{{ route('admin.cientifico.edit', $pj_cientifico->pj_cientifico_id) }}" class="btn btn-outline-primary">Editar</a>
+                                        <h5 class="card-text mb-3">{{ $pj_cientifico->pj_cientifico_titulo }}</h5>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="">
+                                                <a href="{{ route('admin.cientifico.edit', $pj_cientifico->pj_cientifico_id) }}" class="btn btn-outline-primary">Editar</a>
 
-                                        <form action="{{ route('admin.cientifico.destroy', $pj_cientifico->pj_cientifico_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja excluir?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger">Excluir</button>
-                                        </form>
+                                                <form action="{{ route('admin.cientifico.destroy', $pj_cientifico->pj_cientifico_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger">Excluir</button>
+                                                </form>
+                                            </div>
+                                            
+                                            <small class="text-body-secondary text-right">
+                                                {{ $pj_cientifico->created_at ? $pj_cientifico->updated_at->format('Y/m') : 'Data não disponível' }}
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
