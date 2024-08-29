@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="{{ URL::asset('assets/img/logo/your_logo.png') }}" width="30" alt="Logo">
+                <img src="{{ Storage::url($projeto->projeto_img) }}" width="30" alt="Logo" class="rounded-circle">
                 <h1 class="modal-title fs-5" id="processoModalLabel_{{ $projeto->projeto_id }}">
                     Processos de {{ $projeto->projeto_titulo }}
                 </h1>
