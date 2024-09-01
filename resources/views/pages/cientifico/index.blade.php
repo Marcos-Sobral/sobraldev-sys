@@ -11,7 +11,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="card">
                                     @if ($pj_cientifico->pj_cientifico_img)
-                                        <img src="{{ URL::asset('images/' . $projeto->pj_cientifico_img) }}" class="card-img-top img-fluid" alt="{{ $pj_cientifico->pj_cientifico_titulo }}" style="max-height: 150px; object-fit: cover;">
+                                        <img src="{{ URL::asset('images/' . $pj_cientifico->pj_cientifico_img) }}" class="card-img-top img-fluid" alt="{{ $pj_cientifico->pj_cientifico_titulo }}" style="max-height: 150px; object-fit: cover;">
                                     @endif
                                     <div class="card-body">
                                         <h5 class="card-text mb-3">{{ $pj_cientifico->pj_cientifico_titulo }}</h5>
