@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="{{ Storage::url($projeto->projeto_img) }}" width="30" alt="Logo" class="rounded-circle">
+                <img src="{{ URL::asset('images/' . $projeto->projeto_img) }}" width="30" alt="Logo" class="rounded-circle">
                 <h1 class="modal-title fs-5" id="processoModalLabel_{{ $projeto->projeto_id }}">
                     Processos de {{ $projeto->projeto_titulo }}
                 </h1>
@@ -15,7 +15,7 @@
                         <p class="lead my-3">Abaixo estão os processos relacionados ao projeto <strong>{{ $projeto->projeto_titulo }}</strong>.</p>
                     </div>
                     <div class="col-lg-6 d-flex align-items-center justify-content-center">
-                        <img src="{{ Storage::url($projeto->projeto_img) }}" width="200" class="img img-thumbnail rounded w-20" alt="{{ $projeto->projeto_titulo }}">
+                        <img src="{{ URL::asset('images/' . $projeto->projeto_img) }}" width="200" class="img img-thumbnail rounded w-20" alt="{{ $projeto->projeto_titulo }}">
                     </div>
                 </div>
                 <div class="row bg-dark mt-3 rounded text-white">
@@ -26,7 +26,7 @@
                                 @foreach($projeto->processos as $processo)
                                     <div class="col">
                                         <div class="card shadow-sm">
-                                            <img src="{{ Storage::url($processo->processo_img) }}" class="img img-thumbnail rounded w-20" alt="{{ $processo->processo_titulo }}">
+                                            <img src="{{ URL::asset('images/' . $processo->processo_img) }}" class="img img-thumbnail rounded w-20" alt="{{ $processo->processo_titulo }}">
                                             <div class="card-body">
                                                 <h2 class="featurette-heading fw-normal lh-1 text-wrap">{{ $processo->processo_titulo }}</h2>
                                                 <p class="card-text">{{ $processo->processo_descricao }}</p>

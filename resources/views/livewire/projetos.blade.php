@@ -7,7 +7,7 @@
 
             @foreach($projetos as $projeto)
                 <div class="col-lg-4 text-center mb-5">
-                    <img src="{{ Storage::url($projeto->projeto_img) }}" class="w-50 rounded-circle" alt="{{ $projeto->projeto_titulo }}">
+                    <img src="{{ URL::asset('images/' . $projeto->projeto_img) }}" class="w-50 rounded-circle" alt="{{ $projeto->projeto_titulo }}">
                     <h2 class="fw-normal">{{ $projeto->projeto_titulo }}</h2>
                     <p>{{ $projeto->projeto_descricao }}</p>
                     

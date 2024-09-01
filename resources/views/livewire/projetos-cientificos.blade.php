@@ -19,7 +19,7 @@
 
             <div class="col-md-{{ $index % 2 !== 0 ? '4 order-md-1' : '5' }}">
                 @if($projeto->pj_cientifico_img)
-                    <img src="{{ Storage::url($projeto->pj_cientifico_img) }}" class="d-block w-50" alt="{{ $projeto->pj_cientifico_titulo }}">
+                    <img src="{{ URL::asset('images/' . $projeto->pj_cientifico_img) }}" class="d-block w-50" alt="{{ $projeto->pj_cientifico_titulo }}">
                 @else
                     <img src="path/to/default/image.png" class="d-block w-50" alt="...">
                 @endif

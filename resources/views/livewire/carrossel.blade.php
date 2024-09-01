@@ -7,7 +7,7 @@
     <div class="carousel-inner">
         @foreach($carrosseis as $index => $carrossel)
             <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                <img src="{{ asset('storage/' . $carrossel->carrossel_img) }}" class="d-block w-100" alt="...">
+                <img src="{{ URL::asset('images/' . $carrossel->carrossel_img) }}" class="d-block w-100" alt="...">
                 <div class="carousel-caption">
                     @foreach($carrossel->carrosselLink as $link)
                         <p><a class="btn btn-light" href="{{ $link->carrossel_link_url }}">Ver mais</a></p>

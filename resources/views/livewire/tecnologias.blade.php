@@ -17,7 +17,7 @@
                 @endphp
                 <div class="col mb-3">
                     <span class="badge d-flex align-items-center p-1 pe-2 text-{{ $cor }}-emphasis bg-{{ $cor }}-subtle border border-{{ $cor }}-subtle rounded-pill">
-                        <img class="rounded-circle me-1" width="24" height="24" src="{{ asset('storage/' . $tecnologia->tech_img) }}" alt="{{ $tecnologia->tech_titulo }}">
+                        <img class="rounded-circle me-1" width="24" height="24" src="{{ URL::asset('images/' . $tecnologia->tech_img) }}" alt="{{ $tecnologia->tech_titulo }}">
                         {{ $tecnologia->tech_titulo }}
                     </span>
                 </div>
