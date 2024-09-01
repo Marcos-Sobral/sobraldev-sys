@@ -12,7 +12,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="card">
                                     @if ($projeto->projeto_img)
-                                        <img src="{{ asset('storage/' . $projeto->projeto_img) }}" class="card-img-top img-fluid" alt="{{ $projeto->projeto_titulo }}" style="max-height: 150px; object-fit: cover;">
+                                        <img src="{{ URL::asset('images/' . $projeto->projeto_img) }}" class="card-img-top img-fluid" alt="{{ $projeto->projeto_titulo }}" style="max-height: 150px; object-fit: cover;">
                                     @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $projeto->projeto_titulo }}</h5>

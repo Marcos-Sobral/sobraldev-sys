@@ -11,7 +11,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="card">
                                     @if ($tecnologia->tech_img)
-                                        <img src="{{ asset('storage/' . $tecnologia->tech_img) }}" class="card-img-top img-fluid" alt="{{ $tecnologia->tech_titulo }}" style="max-height: 150px; object-fit: cover;">
+                                        <img src="{{ URL::asset('images/' . $tecnologia->tech_img) }}" class="card-img-top img-fluid" alt="{{ $tecnologia->tech_titulo }}" style="max-height: 150px; object-fit: cover;">
                                     @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $tecnologia->tech_titulo }}</h5>

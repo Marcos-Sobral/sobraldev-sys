@@ -11,7 +11,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="card">
                                     @if ($carrossel->carrossel_img)
-                                        <img src="{{ asset('storage/' . $carrossel->carrossel_img) }}" class="card-img-top img-fluid" alt="{{ $carrossel->carrossel_titulo }}" style="max-height: 150px; object-fit: cover;">
+                                        <img src="{{ URL::asset('images/' . $carrossel->carrossel_img) }}" class="card-img-top img-fluid" alt="{{ $carrossel->carrossel_titulo }}" style="max-height: 150px; object-fit: cover;">
                                     @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $carrossel->carrossel_titulo }}</h5>

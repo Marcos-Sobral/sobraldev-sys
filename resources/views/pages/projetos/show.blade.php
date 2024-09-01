@@ -23,7 +23,7 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card shadow-sm">
                                         @if ($processo->processo_img)
-                                            <img src="{{ asset('storage/' . $processo->processo_img) }}" class="img img-thumbnail rounded w-100" alt="{{ $processo->processo_titulo }}" style="max-height: 250px; object-fit: cover;">
+                                            <img src="{{ URL::asset('images/' . $processo->processo_img) }}" class="img img-thumbnail rounded w-100" alt="{{ $processo->processo_titulo }}" style="max-height: 250px; object-fit: cover;">
                                         @else
                                             <img src="{{ asset('assets/img/default-image.png') }}" class="img img-thumbnail rounded w-100" alt="Default Image">
                                         @endif
