@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'users_perfil_id',
+        'is_admin', 
     ];
 
     /**
@@ -42,4 +44,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function perfil()
+    {
+        return $this->belongsTo(Perfil::class, 'users_perfil_id', 'perfil_id');
+    }    
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
 }

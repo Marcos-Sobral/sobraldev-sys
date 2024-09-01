@@ -1,0 +1,1 @@
+<img src="{{ URL::asset('assets/img/logo/2.png') }}" alt="Logo" width="120" height="40" class="d-inline-block align-text-top me-2">
