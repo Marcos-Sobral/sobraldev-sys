@@ -43,11 +43,16 @@ class ProcessoController extends Controller
             'links.*.processo_link_url' => 'nullable|url',
             'links.*.processo_link_class' => 'nullable|string',
         ]);
-    
+
         // Processamento da imagem
         if ($request->hasFile('processo_img')) {
-            $validated['processo_img'] = $request->file('processo_img')->store('processo_photo', 'public');
+            // Gerar um nome único para a imagem
+            $imageName = time() . '.' . $request->file('processo_img')->extension();
+            // Salvar a imagem na pasta 'public/images/processo_photo' sem precisar do storage link
+            $request->file('processo_img')->move(public_path('images/processo_photo'), $imageName);
+            $validated['processo_img'] = 'processo_photo/' . $imageName;
         }
+
     
         $processo = Processo::create($validated);
     
@@ -68,6 +73,7 @@ class ProcessoController extends Controller
         return redirect()->route('admin.projeto.show', ['id' => $processo->pr_projeto_id])
             ->with('success', 'Processo adicionado com sucesso!');
     }
+    
     
     
 
@@ -109,10 +115,15 @@ class ProcessoController extends Controller
     
         // Processamento da imagem
         if ($request->hasFile('processo_img')) {
-            if ($processo->processo_img && Storage::exists('public/' . $processo->processo_img)) {
-                Storage::delete('public/' . $processo->processo_img);
+            // Excluir a imagem antiga se existir
+            if ($processo->processo_img && file_exists(public_path('images/' . $processo->processo_img))) {
+                unlink(public_path('images/' . $processo->processo_img));
             }
-            $validated['processo_img'] = $request->file('processo_img')->store('processo_photo', 'public');
+    
+            // Armazenar a nova imagem na pasta 'public/images/processo_photo'
+            $imageName = time() . '.' . $request->file('processo_img')->extension();
+            $request->file('processo_img')->move(public_path('images/processo_photo'), $imageName);
+            $validated['processo_img'] = 'processo_photo/' . $imageName;
         }
     
         // Atualizar o processo
@@ -147,14 +158,16 @@ class ProcessoController extends Controller
     public function destroy(int $id)
     {
         $processo = Processo::findOrFail($id);
-
-        if ($processo->processo_img && Storage::exists('public/' . $processo->processo_img)) {
-            Storage::delete('public/' . $processo->processo_img);
+    
+        if ($processo->processo_img && file_exists(public_path('images/' . $processo->processo_img))) {
+            // Excluir a imagem do sistema de arquivos
+            unlink(public_path('images/' . $processo->processo_img));
         }
-
+    
         $processo->processoLinks()->delete(); // Correção para 'processoLinks'
-
+    
         $processo->delete();
         return redirect()->route('admin.projeto.index')->with('success', 'Processo excluído com sucesso!');
     }
+    
 }
