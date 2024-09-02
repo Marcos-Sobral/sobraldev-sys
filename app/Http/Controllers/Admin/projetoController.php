@@ -39,17 +39,20 @@ class ProjetoController extends Controller
             'projeto_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'pj_perfil_id' => 'required|exists:perfil,perfil_id'
         ]);
-
+    
         // Processamento da imagem
         if ($request->hasFile('projeto_img')) {
-            // Armazenando a imagem na pasta 'projeto_photo'
-            $validated['projeto_img'] = $request->file('projeto_img')->store('projeto_photo', 'public');
+            // Gerar um nome único para a imagem
+            $imageName = time() . '.' . $request->file('projeto_img')->extension();
+            // Salvar a imagem na pasta 'public/images/projeto_photo' sem precisar do storage link
+            $request->file('projeto_img')->move(public_path('images/projeto_photo'), $imageName);
+            $validated['projeto_img'] = 'projeto_photo/' . $imageName;
         }
-
+    
         Projeto::create($validated);
         return redirect()->route('admin.projeto.index')->with('success', 'Projeto criado com sucesso.');
     }
-
+    
     /**
      * Display the specified resource.
      */
@@ -91,12 +94,14 @@ class ProjetoController extends Controller
         // Verificar se foi enviada uma nova imagem
         if ($request->hasFile('projeto_img')) {
             // Excluir a imagem antiga se existir
-            if ($projeto->projeto_img && Storage::exists('public/' . $projeto->projeto_img)) {
-                Storage::delete('public/' . $projeto->projeto_img);
+            if ($projeto->projeto_img && file_exists(public_path('images/' . $projeto->projeto_img))) {
+                unlink(public_path('images/' . $projeto->projeto_img));
             }
 
-            // Armazenar a nova imagem na pasta 'projeto_photo'
-            $projeto->projeto_img = $request->file('projeto_img')->store('projeto_photo', 'public');
+            // Armazenar a nova imagem na pasta 'public/images/projeto_photo'
+            $imageName = time() . '.' . $request->file('projeto_img')->extension();
+            $request->file('projeto_img')->move(public_path('images/projeto_photo'), $imageName);
+            $projeto->projeto_img = 'projeto_photo/' . $imageName;
         }
 
         $projeto->save();
@@ -107,13 +112,13 @@ class ProjetoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $projeto = Projeto::findOrFail($id);
 
-        // Excluir a imagem associada se existir
-        if ($projeto->projeto_img && Storage::exists('public/' . $projeto->projeto_img)) {
-            Storage::delete('public/' . $projeto->projeto_img);
+        if ($projeto->projeto_img && file_exists(public_path('images/' . $projeto->projeto_img))) {
+            // Excluir a imagem do sistema de arquivos
+            unlink(public_path('images/' . $projeto->projeto_img));
         }
 
         $projeto->delete();
