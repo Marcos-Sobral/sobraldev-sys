@@ -32,8 +32,13 @@ class carrosselController extends Controller
             'links.*.carrossel_link_url' => 'nullable|url',
         ]);
 
+        // Processamento da imagem
         if ($request->hasFile('carrossel_img')) {
-            $validated['carrossel_img'] = $request->file('carrossel_img')->store('carrossel_photo', 'public');
+            // Gerar um nome único para a imagem
+            $imageName = time() . '.' . $request->file('carrossel_img')->extension();
+            // Salvar a imagem na pasta 'public/images/carrossel_photo' sem precisar do storage link
+            $request->file('carrossel_img')->move(public_path('images/carrossel_photo'), $imageName);
+            $validated['carrossel_img'] = 'carrossel_photo/' . $imageName;
         }
 
         $carrossel = Carrossel::create($validated);
@@ -77,12 +82,19 @@ class carrosselController extends Controller
         $carrossel->carrossel_descricao = $request->carrossel_descricao;
         $carrossel->carrossel_perfil_id = $request->perfil_id;
     
-        // Atualizar a imagem se for enviada
+        // Verificar se foi enviada uma nova imagem
         if ($request->hasFile('carrossel_img')) {
-            $path = $request->file('carrossel_img')->store('carrossel_images', 'public');
-            $carrossel->carrossel_img = $path;
+            // Excluir a imagem antiga se existir
+            if ($carrossel->carrossel_img && file_exists(public_path('images/' . $carrossel->carrossel_img))) {
+                unlink(public_path('images/' . $carrossel->carrossel_img));
+            }
+
+            // Armazenar a nova imagem na pasta 'public/images/carrossel_photo'
+            $imageName = time() . '.' . $request->file('carrossel_img')->extension();
+            $request->file('carrossel_img')->move(public_path('images/carrossel_photo'), $imageName);
+            $carrossel->carrossel_img = 'carrossel_photo/' . $imageName;
         }
-    
+            
         // Atualizar ou criar o link
         $carrossel->carrosselLink()->updateOrCreate(
             ['Links_carrossel_id' => $carrossel->carrossel_id],
@@ -99,8 +111,9 @@ class carrosselController extends Controller
     {
         $carrossel = Carrossel::findOrFail($id);
 
-        if ($carrossel->carrossel_img && Storage::exists('public/' . $carrossel->carrossel_img)) {
-            Storage::delete('public/' . $carrossel->carrossel_img);
+        if ($carrossel->carrossel_img && file_exists(public_path('images/' . $carrossel->carrossel_img))) {
+            // Excluir a imagem do sistema de arquivos
+            unlink(public_path('images/' . $carrossel->carrossel_img));
         }
 
         $carrossel->carrosselLink()->delete();

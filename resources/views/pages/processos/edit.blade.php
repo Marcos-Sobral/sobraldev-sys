@@ -48,7 +48,7 @@
                                 <label for="processo_img" class="form-label">Imagem do Processo</label>
                                 @if ($processo->processo_img)
                                     <div class="mb-2">
-                                        <img src="{{ asset('storage/' . $processo->processo_img) }}" class="img-fluid" alt="{{ $processo->processo_titulo }}" style="max-height: 150px; object-fit: cover;">
+                                        <img src="{{ URL::asset('images/' . $processo->processo_img) }}" class="img-fluid" alt="{{ $processo->processo_titulo }}" style="max-height: 150px; object-fit: cover;">
                                     </div>
                                 @endif
                                 <input type="file" id="processo_img" name="processo_img" class="form-control @error('processo_img') is-invalid @enderror" accept="image/*">
