@@ -30,8 +30,13 @@ class pj_cientificoController extends Controller
             'pj_cientifico_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
+        // Processamento da imagem
         if ($request->hasFile('pj_cientifico_img')) {
-            $validated['pj_cientifico_img'] = $request->file('pj_cientifico_img')->store('pj_cientifico_photo', 'public');
+            // Gerar um nome único para a imagem
+            $imageName = time() . '.' . $request->file('pj_cientifico_img')->extension();
+            // Salvar a imagem na pasta 'public/images/pj_cientifico_photo' sem precisar do storage link
+            $request->file('pj_cientifico_img')->move(public_path('images/pj_cientifico_photo'), $imageName);
+            $validated['pj_cientifico_img'] = 'pj_cientifico_photo/' . $imageName;
         }
     
         $pj_cientifico = ProjetoCientifico::create($validated);
@@ -64,42 +69,48 @@ class pj_cientificoController extends Controller
             'pj_cientifico_titulo' => 'required|string|max:255',
             'pj_cientifico_descricao' => 'nullable|string|max:255',
             'pj_cientifico_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'pj_cientificos_url' => 'nullable|url',
-            'pj_cientificos_link_nome' => 'nullable|string|max:255',
-            'perfil_id' => 'required|exists:perfil,perfil_id',
         ]);
     
         $pj_cientifico = ProjetoCientifico::findOrFail($id);
-        $pj_cientifico->update($validated);
     
-        // Atualiza a imagem, se houver uma nova
+        // Processamento da imagem
         if ($request->hasFile('pj_cientifico_img')) {
-            // Remove a imagem antiga, se existir
-            if ($pj_cientifico->pj_cientifico_img && Storage::exists('public/' . $pj_cientifico->pj_cientifico_img)) {
-                Storage::delete('public/' . $pj_cientifico->pj_cientifico_img);
+            // Deletar a imagem antiga, se existir
+            if ($pj_cientifico->pj_cientifico_img && file_exists(public_path($pj_cientifico->pj_cientifico_img))) {
+                unlink(public_path($pj_cientifico->pj_cientifico_img));
             }
     
-            // Armazena a nova imagem
-            $path = $request->file('pj_cientifico_img')->store('pj_cientifico_images', 'public');
-            $pj_cientifico->update(['pj_cientifico_img' => $path]);
+            // Gerar um nome único para a nova imagem
+            $imageName = time() . '.' . $request->file('pj_cientifico_img')->extension();
+            // Salvar a nova imagem na pasta 'public/images/pj_cientifico_photo'
+            $request->file('pj_cientifico_img')->move(public_path('images/pj_cientifico_photo'), $imageName);
+            $validated['pj_cientifico_img'] = 'pj_cientifico_photo/' . $imageName;
         }
     
-        // Atualiza ou cria o link científico
-        if ($request->filled('pj_cientificos_url')) {
-            // Remove o link antigo, se existir
-            $pj_cientifico->projetoCientificoLink()->delete();
+        $pj_cientifico->update($validated);
     
-            // Cria um novo link
-            PJCientificoLink::create([
-                'link_projeto_cientifico_id' => $pj_cientifico->pj_cientifico_id,
-                'pj_cientificos_url' => $request->pj_cientificos_url,
-                'pj_cientificos_link_nome' => $request->pj_cientificos_link_nome,
-                'pj_cientificos_link_class' => $request->pj_cientificos_link_class ?? 'btn-outline-primary',
-            ]);
+        // Atualizar o link do projeto científico, se existir
+        if ($request->filled('pj_cientificos_url')) {
+            $pj_cientifico_link = PJCientificoLink::where('link_projeto_cientifico_id', $pj_cientifico->pj_cientifico_id)->first();
+            if ($pj_cientifico_link) {
+                $pj_cientifico_link->update([
+                    'pj_cientificos_url' => $request->pj_cientificos_url,
+                    'pj_cientificos_link_nome' => $request->pj_cientificos_link_nome,
+                    'pj_cientificos_link_class' => $request->pj_cientificos_link_class ?? 'btn-outline-primary',
+                ]);
+            } else {
+                PJCientificoLink::create([
+                    'link_projeto_cientifico_id' => $pj_cientifico->pj_cientifico_id,
+                    'pj_cientificos_url' => $request->pj_cientificos_url,
+                    'pj_cientificos_link_nome' => $request->pj_cientificos_link_nome,
+                    'pj_cientificos_link_class' => $request->pj_cientificos_link_class ?? 'btn-outline-primary',
+                ]);
+            }
         }
     
         return redirect()->route('admin.cientifico.index')->with('success', 'Projeto Científico atualizado com sucesso!');
     }
+    
     
     
     
@@ -109,14 +120,18 @@ class pj_cientificoController extends Controller
     public function destroy($id)
     {
         $pj_cientifico = ProjetoCientifico::findOrFail($id);
-
-        if ($pj_cientifico->pj_cientifico_img && Storage::exists('public/' . $pj_cientifico->pj_cientifico_img)) {
-            Storage::delete('public/' . $pj_cientifico->pj_cientifico_img);
+    
+        // Deletar a imagem associada, se existir
+        if ($pj_cientifico->pj_cientifico_img && file_exists(public_path($pj_cientifico->pj_cientifico_img))) {
+            unlink(public_path($pj_cientifico->pj_cientifico_img));
         }
-
-        $pj_cientifico->projetoCientificoLink()->delete();
+    
+        // Deletar o link associado, se existir
+        PJCientificoLink::where('link_projeto_cientifico_id', $pj_cientifico->pj_cientifico_id)->delete();
+    
         $pj_cientifico->delete();
-
+    
         return redirect()->route('admin.cientifico.index')->with('success', 'Projeto Científico excluído com sucesso!');
     }
+    
 }
