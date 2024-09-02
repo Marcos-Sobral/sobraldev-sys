@@ -10,7 +10,7 @@
                 <img src="{{ URL::asset('images/' . $carrossel->carrossel_img) }}" class="d-block w-100" alt="...">
                 <div class="carousel-caption">
                     @foreach($carrossel->carrosselLink as $link)
-                        <p><a class="btn btn-light" href="{{ $link->carrossel_link_url }}">Ver mais</a></p>
+                        <p><a class="btn btn-light" href="{{ $link->carrossel_link_url }}"  target="_blank">Ver mais</a></p>
                     @endforeach
                 </div>
             </div>
