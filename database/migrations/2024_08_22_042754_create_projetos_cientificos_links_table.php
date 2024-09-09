@@ -25,11 +25,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projetos_cientificos_links', function (Blueprint $table) {
-            $table->dropColumn('pj_cientificos_link_nome');
-            $table->dropColumn('pj_cientificos_link_class');
-            $table->dropTimestamps();
             $table->dropForeign(['link_projeto_cientifico_id']);
             $table->dropColumn('link_projeto_cientifico_id');
         });
+        
+        Schema::dropIfExists('projetos_cientificos_links');
     }
+    
 };

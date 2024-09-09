@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Perfil;
+use App\Models\Processo;
 use App\Models\Tecnologia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +17,7 @@ class techController extends Controller
     public function index()
     {
         $techs = Tecnologia::all();
+        $processos = Processo::all();
         return view("pages.tecnologias.index", compact('techs'));
     }
 
@@ -25,6 +27,7 @@ class techController extends Controller
     public function create()
     {
         $perfis = Perfil::all(); // Chamando todos os perfis para fazer a relação
+        $processos = Processo::all();
         return view('pages.tecnologias.create', compact('perfis'));
     }
 
@@ -36,8 +39,10 @@ class techController extends Controller
         // Validação dos dados
         $validatedData = $request->validate([
             'tech_titulo' => 'required|string|max:255',
-            'tech_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adicionando tipos de arquivos permitidos e limite de tamanho
-            'perfil_id' => 'required|exists:perfil,perfil_id' // Garantindo que perfil_id existe na tabela perfis
+            'tech_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'perfil_id' => 'required|exists:perfil,perfil_id',
+            'processos' => 'array',
+            'processos.*' => 'exists:processos,processo_id'  
         ]);
 
         // Processamento da imagem
@@ -47,7 +52,10 @@ class techController extends Controller
         }
 
         // Criação do registro na tabela
-        Tecnologia::create($validatedData);
+        $tecnologia = Tecnologia::create($validatedData);
+
+        // Associar processos selecionados
+        $tecnologia->processos()->sync($request->input('processos', []));
 
         // Redirecionamento com mensagem de sucesso
         return redirect()->route('admin.tech.index')->with('success', 'Tecnologia criada com sucesso.');
@@ -67,7 +75,8 @@ class techController extends Controller
     public function edit($id)
     {
         $tecnologia = Tecnologia::findOrFail($id);
-        $perfis = Perfil::all(); // Se precisar de perfis para o dropdown
+        $perfis = Perfil::all();
+        $processos = Processo::all();
         return view('pages.tecnologias.edit', compact('tecnologia', 'perfis'));
     }
 
@@ -79,8 +88,10 @@ class techController extends Controller
         // Validação dos dados
         $request->validate([
             'tech_titulo' => 'required|string|max:255',
-            'tech_img' => 'nullable|image',
-            'perfil_id' => 'required|exists:perfil,perfil_id'
+            'tech_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'perfil_id' => 'required|exists:perfil,perfil_id',
+            'processos' => 'array',
+            'processos.*' => 'exists:processos,processo_id' 
         ]);
 
         // Encontrar a tecnologia pelo ID
@@ -103,6 +114,9 @@ class techController extends Controller
 
         // Salvar as alterações
         $tecnologia->save();
+
+        // Atualizar os processos relacionados
+        $tecnologia->processos()->sync($request->input('processos', []));
 
         // Redirecionar com uma mensagem de sucesso
         return redirect()->route('admin.tech.index')->with('success', 'Tecnologia atualizada com sucesso!');

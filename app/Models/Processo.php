@@ -22,6 +22,14 @@ class Processo extends Model
         return $this->belongsTo(Projeto::class, 'pr_projeto_id', 'projeto_id');
     }
 
+
+    // Relacionamento com Tecnologia
+    public function tecnologias()
+    {
+        return $this->belongsToMany(Tecnologia::class, 'processo_tecnologia', 'processo_id', 'tech_id');
+    }
+
+    
     // Definir o relacionamento com o modelo Link
     public function processoLinks()
     {

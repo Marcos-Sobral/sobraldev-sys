@@ -42,6 +42,8 @@ class ProcessoController extends Controller
             'links.*.processo_link_nome' => 'nullable|string|max:255',
             'links.*.processo_link_url' => 'nullable|url',
             'links.*.processo_link_class' => 'nullable|string',
+            'tecnologias' => 'nullable|array', // Validação para tecnologias
+            'tecnologias.*' => 'exists:tecnologias,tecnologia_id', // Cada tecnologia deve existir
         ]);
     
         // Processamento da imagem
@@ -51,6 +53,11 @@ class ProcessoController extends Controller
     
         $processo = Processo::create($validated);
     
+        // Associar tecnologias ao processo
+        if ($request->has('tecnologias')) {
+            $processo->tecnologias()->sync($request->input('tecnologias'));
+        }
+
         // Adicionar links, se existirem
         if ($request->has('links')) {
             foreach ($request->input('links') as $link) {
@@ -76,7 +83,7 @@ class ProcessoController extends Controller
      */
     public function show($id)
     {
-        $processo = Processo::with('processoLinks')->findOrFail($id); // Correção para 'processoLinks'
+        $processo = Processo::with('tecnologias','processoLinks')->findOrFail($id); // Correção para 'processoLinks'
         return view('pages.processos.show', compact('processo'));
     }
 
@@ -105,6 +112,8 @@ class ProcessoController extends Controller
             'links.*.processo_link_nome' => 'nullable|string|max:255',
             'links.*.processo_link_url' => 'nullable|url',
             'links.*.processo_link_class' => 'nullable|string',
+            'tecnologias' => 'nullable|array', // Validação para tecnologias
+            'tecnologias.*' => 'exists:tecnologias,tecnologia_id',
         ]);
     
         // Processamento da imagem
@@ -118,6 +127,11 @@ class ProcessoController extends Controller
         // Atualizar o processo
         $processo->update($validated);
     
+        // Atualizar tecnologias associadas ao processo
+        if ($request->has('tecnologias')) {
+            $processo->tecnologias()->sync($request->input('tecnologias'));
+        }
+
         // Excluir todos os links antigos
         $processo->processoLinks()->delete();
     

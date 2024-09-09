@@ -12,10 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('processos_links', function (Blueprint $table) {
-            $table->id('processo_link_id');
+            $table->bigIncrements('processo_link_id'); // ID da tabela processos_links
             $table->string('processo_link_url');
             $table->timestamps();
-            $table->foreignId('link_processo_id')->nullable()->constrained('processos','processo_id')->onDelete('cascade');
+            
+            // Adiciona a coluna de chave estrangeira corretamente
+            $table->unsignedBigInteger('link_processo_id');
+            $table->foreign('link_processo_id')->references('processo_id')->on('processos')->onDelete('cascade');
         });
     }
 

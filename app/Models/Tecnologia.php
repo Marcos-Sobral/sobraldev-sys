@@ -17,6 +17,12 @@ class Tecnologia extends Model
             'perfil_id',
         ];
 
+        // Relacionamento com Processo
+        public function processos()
+        {
+            return $this->belongsToMany(Processo::class, 'processo_tecnologia', 'tech_id', 'processo_id');
+        }
+
         public function perfil()
         {
             return $this->belongsTo(Perfil::class, 'perfil_id', 'perfil_id');
