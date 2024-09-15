@@ -23,8 +23,8 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                       <li><a class="dropdown-item fw-bold" target="_blank" href="http://lattes.cnpq.br/4305160667586368">Carreira Ciêntifica - Lattes</a></li>
-                      <li><a class="dropdown-item fw-bold" target="_blank" href="./Assets/img/curriculos/DEV PHP - PT (1).pdf">Desenvolvedor PHP</a></li>
-                      <li><a class="dropdown-item fw-bold" target="_blank" href="././Assets/img/curriculos/DEV Java - PT.pdf">Desenvolvedor Java</a></li>
+                      <li><a class="dropdown-item fw-bold" target="_blank" href="https://www.canva.com/design/DAGPnxq9kuY/LzeaPUUIKLk3i3fTnhna4Q/edit?utm_content=DAGPnxq9kuY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Desenvolvedor PHP</a></li>
+                      <li><a class="dropdown-item fw-bold" target="_blank" href="https://www.canva.com/design/DAGPn7tKC58/o7Nf0sOQJF48URmBvC0RGw/edit?utm_content=DAGPn7tKC58&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Desenvolvedor Java</a></li>
                       <li><a class="dropdown-item fw-bold" target="_blank" href="">Design UX/UI</a></li>
                   </ul>
               </li>

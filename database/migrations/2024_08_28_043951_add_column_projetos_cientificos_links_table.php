@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +14,8 @@ return new class extends Migration
             // Adicionando novas colunas à tabela existente
             $table->string('pj_cientificos_link_nome')->nullable()->after('pj_cientificos_url');
             $table->string('pj_cientificos_link_class')->nullable()->default('btn-outline-primary')->after('pj_cientificos_link_nome');
-            $table->timestamps();
+            // Não adicionar timestamps novamente, pois as colunas já existem
+            // $table->timestamps(); 
         });
     }
 
@@ -30,3 +30,4 @@ return new class extends Migration
         });
     }
 };
+
