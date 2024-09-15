@@ -23,7 +23,7 @@
                             @if ($carrossel->carrossel_img)
                                 <div class="mt-4">
                                     <span class="block text-sm text-gray-600 dark:text-gray-400">Imagem Atual:</span>
-                                    <img src="{{ asset('storage/' . $carrossel->carrossel_img) }}" width="150" class="rounded mt-2">
+                                    <img src="{{ asset('images/' . $carrossel->carrossel_img) }}" width="150" class="rounded mt-2">
                                 </div>
                             @endif
                         </div>
