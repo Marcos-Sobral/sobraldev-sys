@@ -30,6 +30,19 @@
                                             <div class="card-body">
                                                 <h2 class="featurette-heading fw-normal lh-1 text-wrap">{{ $processo->processo_titulo }}</h2>
                                                 <p class="card-text">{{ $processo->processo_descricao }}</p>
+                                                <p class="card-text">Tecnologia utilizada:</p>
+                                                <div class="d-flex gap-md-3 justify-content-around py-2 mb-3">
+                                                    <div class="row">
+                                                        @foreach($processo->tecnologias as $tecnologia)
+                                                            <div class="col">
+                                                                <span class="badge d-flex align-items-center p-1 pe-2 text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-pill">
+                                                                    <img class="rounded-circle me-1" width="24" height="24" src="{{ URL::asset('images/' . $tecnologia->tech_img) }}" alt="{{ $tecnologia->tech_titulo }}">
+                                                                    {{ $tecnologia->tech_titulo }}
+                                                                </span>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group">
                                                         @foreach($processo->processoLinks as $link)
