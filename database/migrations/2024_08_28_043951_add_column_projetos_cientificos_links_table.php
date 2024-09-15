@@ -25,7 +25,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projetos_cientificos_links', function (Blueprint $table) {
-            // Removendo as colunas adicionadas na migração 'up'
             $table->dropColumn('pj_cientificos_link_nome');
             $table->dropColumn('pj_cientificos_link_class');
         });

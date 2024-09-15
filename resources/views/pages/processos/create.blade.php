@@ -48,6 +48,18 @@
                             @enderror
                         </div>
 
+                        <div class="mb-4">
+                            <label for="tecnologias" class="form-label">Tecnologias Utilizadas</label>
+                            <div class="form-check">
+                                @foreach ($tecnologias as $tecnologia)
+                                    <div class="mb-2">
+                                        <input type="checkbox" id="tecnologia_{{ $tecnologia->tech_id }}" name="tecnologias[]" value="{{ $tecnologia->tech_id }}" class="form-check-input">
+                                        <label for="tecnologia_{{ $tecnologia->tech_id }}" class="form-check-label">{{ $tecnologia->tech_titulo }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
                         <!-- Adicionar seção para links -->
                         <div id="links-section">
                             <h2 class="fs-4 mb-3">Links do Processo</h2>

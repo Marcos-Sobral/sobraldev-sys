@@ -48,7 +48,7 @@
                                 <label for="processo_img" class="form-label">Imagem do Processo</label>
                                 @if ($processo->processo_img)
                                     <div class="mb-2">
-                                        <img src="{{ URL::asset('images/' . $processo->processo_img) }}" class="img-fluid" alt="{{ $processo->processo_titulo }}" style="max-height: 150px; object-fit: cover;">
+                                        <img src="{{ asset('images/' . $processo->processo_img) }}" class="img-fluid" alt="{{ $processo->processo_titulo }}" style="max-height: 150px; object-fit: cover;">
                                     </div>
                                 @endif
                                 <input type="file" id="processo_img" name="processo_img" class="form-control @error('processo_img') is-invalid @enderror" accept="image/*">
@@ -57,6 +57,26 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="mb-4">
+                            <label for="tecnologias" class="form-label">Tecnologias Utilizadas</label>
+                            <div class="form-check">
+                                @foreach ($tecnologias as $tecnologia)
+                                    <div class="mb-2">
+                                        <input type="checkbox" 
+                                            id="tecnologia_{{ $tecnologia->tech_id }}" 
+                                            name="tecnologias[]" 
+                                            value="{{ $tecnologia->tech_id }}" 
+                                            class="form-check-input"
+                                            {{ in_array($tecnologia->tech_id, $processo->tecnologias->pluck('tech_id')->toArray()) ? 'checked' : '' }}>
+                                        <label for="tecnologia_{{ $tecnologia->tech_id }}" class="form-check-label">
+                                            {{ $tecnologia->tech_titulo }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
 
                         <!-- Seção para links -->
                         <div id="links-section">

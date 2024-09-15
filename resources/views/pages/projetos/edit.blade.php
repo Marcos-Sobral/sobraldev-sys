@@ -45,7 +45,7 @@
                                 @if ($projeto->projeto_img)
                                     <div class="mt-4">
                                         <span class="block text-sm text-gray-600 dark:text-gray-400">Imagem Atual:</span>
-                                        <img src="{{ URL::asset('images/' . $projeto->projeto_img) }}" width="150" class="rounded mt-2">
+                                        <img src="{{ asset('images/' . $projeto->projeto_img) }}" width="150" class="rounded mt-2">
                                     </div>
                                 @endif
                             </div>

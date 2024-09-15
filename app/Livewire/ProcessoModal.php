@@ -11,7 +11,7 @@ class ProcessoModal extends Component
 
     public function mount($projetoId)
     {
-        $this->projeto = Projeto::with('processos.processoLinks')->find($projetoId);
+        $this->projeto = Projeto::with('processos.processoLinks', 'processos.tecnologias')->find($projetoId);
     }
     
     
