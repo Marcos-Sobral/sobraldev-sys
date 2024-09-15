@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Perfil;
-use App\Models\Processo;
 use App\Models\Tecnologia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class techController extends Controller
 {
@@ -17,7 +15,6 @@ class techController extends Controller
     public function index()
     {
         $techs = Tecnologia::all();
-        $processos = Processo::all();
         return view("pages.tecnologias.index", compact('techs'));
     }
 
@@ -27,7 +24,6 @@ class techController extends Controller
     public function create()
     {
         $perfis = Perfil::all(); // Chamando todos os perfis para fazer a relação
-        $processos = Processo::all();
         return view('pages.tecnologias.create', compact('perfis'));
     }
 
@@ -40,22 +36,20 @@ class techController extends Controller
         $validatedData = $request->validate([
             'tech_titulo' => 'required|string|max:255',
             'tech_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'perfil_id' => 'required|exists:perfil,perfil_id',
-            'processos' => 'array',
-            'processos.*' => 'exists:processos,processo_id'  
+            'perfil_id' => 'required|exists:perfil,perfil_id'
         ]);
 
         // Processamento da imagem
         if ($request->hasFile('tech_img')) {
-            // Armazenando a imagem na pasta 'tech_icon'
-            $validatedData['tech_img'] = $request->file('tech_img')->store('tech_icon', 'public');
+            // Gerar um nome único para a imagem
+            $imageName = time() . '.' . $request->file('tech_img')->extension();
+            // Salvar a imagem na pasta 'public/tech_icon' sem precisar do storage link
+            $request->file('tech_img')->move(public_path('images/tech_icon'), $imageName);
+            $validatedData['tech_img'] = 'tech_icon/' . $imageName;
         }
 
         // Criação do registro na tabela
-        $tecnologia = Tecnologia::create($validatedData);
-
-        // Associar processos selecionados
-        $tecnologia->processos()->sync($request->input('processos', []));
+        Tecnologia::create($validatedData);
 
         // Redirecionamento com mensagem de sucesso
         return redirect()->route('admin.tech.index')->with('success', 'Tecnologia criada com sucesso.');
@@ -76,7 +70,6 @@ class techController extends Controller
     {
         $tecnologia = Tecnologia::findOrFail($id);
         $perfis = Perfil::all();
-        $processos = Processo::all();
         return view('pages.tecnologias.edit', compact('tecnologia', 'perfis'));
     }
 
@@ -89,9 +82,7 @@ class techController extends Controller
         $request->validate([
             'tech_titulo' => 'required|string|max:255',
             'tech_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'perfil_id' => 'required|exists:perfil,perfil_id',
-            'processos' => 'array',
-            'processos.*' => 'exists:processos,processo_id' 
+            'perfil_id' => 'required|exists:perfil,perfil_id'
         ]);
 
         // Encontrar a tecnologia pelo ID
@@ -104,19 +95,18 @@ class techController extends Controller
         // Verificar se foi enviada uma nova imagem
         if ($request->hasFile('tech_img')) {
             // Excluir a imagem antiga se existir
-            if ($tecnologia->tech_img && Storage::exists('public/' . $tecnologia->tech_img)) {
-                Storage::delete('public/' . $tecnologia->tech_img);
+            if ($tecnologia->tech_img && file_exists(public_path('images/' . $tecnologia->tech_img))) {
+                unlink(public_path('images/' . $tecnologia->tech_img));
             }
 
-            // Armazenar a nova imagem na pasta 'tech_icon'
-            $tecnologia->tech_img = $request->file('tech_img')->store('tech_icon', 'public');
+            // Armazenar a nova imagem na pasta 'public/images/tech_icon'
+            $imageName = time() . '.' . $request->file('tech_img')->extension();
+            $request->file('tech_img')->move(public_path('images/tech_icon'), $imageName);
+            $tecnologia->tech_img = 'tech_icon/' . $imageName;
         }
 
         // Salvar as alterações
         $tecnologia->save();
-
-        // Atualizar os processos relacionados
-        $tecnologia->processos()->sync($request->input('processos', []));
 
         // Redirecionar com uma mensagem de sucesso
         return redirect()->route('admin.tech.index')->with('success', 'Tecnologia atualizada com sucesso!');
@@ -129,10 +119,10 @@ class techController extends Controller
     {
         $tecnologia = Tecnologia::findOrFail($id);
 
-        // Verificar se a tecnologia tem uma imagem associada e se ela existe no storage
-        if ($tecnologia->tech_img && Storage::exists('public/' . $tecnologia->tech_img)) {
-            // Excluir a imagem do storage
-            Storage::delete('public/' . $tecnologia->tech_img);
+        // Verificar se a tecnologia tem uma imagem associada e se ela existe no sistema de arquivos
+        if ($tecnologia->tech_img && file_exists(public_path('images/' . $tecnologia->tech_img))) {
+            // Excluir a imagem do sistema de arquivos
+            unlink(public_path('images/' . $tecnologia->tech_img));
         }
 
         // Deletar a tecnologia do banco de dados
