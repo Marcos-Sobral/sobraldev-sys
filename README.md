@@ -2,7 +2,7 @@
 
 # Sobraldev-sys
 
-O sobraldev é um portifólio de projetos automatizado, assim é possível gerenciar e deixar sempre atualizado a página sem ter a preocupação de alteração no código.
+O sobraldev é um portifólio de projetos automatizado, assim é possível gerenciar e deixar sempre atualizado a página sem ter a preocupação de alteração no código. 
 
 ## Especificações utilizada no projeto
 
@@ -15,6 +15,41 @@ O sobraldev é um portifólio de projetos automatizado, assim é possível geren
   <li>Bibliotecas: Bootstrap e Tailwind</li>
   <li>Windows: 11</li>
 </ul>
+
+## Imagens do sistemas disponível apenas para os visitantes da página:
+
+- Tela principal, onde o usuário possuir informações da barra de navegação e as novidades que são anunciadas no carrossel de imagens
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288480117085048864/image.png?ex=66f5561e&is=66f4049e&hm=f896e0bb3b5c249f5ad19ec6812843b70f39e0c5c7c17c1f4b0790eb1a84c15a&" width="400" alt="imagem da Tela principal, onde o usuário possuir informações da barra de navegação e as novidades que são anunciadas no carrossel de imagen"></p>
+
+- Visão geral de projetos e tecnologias, onde o usuário pode conferrir as tecnologias que são geralmente utilizadas nos projetos, além da seção projetos que ao abrir um deles contém mais detalhes sobre atráves de uma modal:
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288482042375311411/image.png?ex=66f557e9&is=66f40669&hm=ad43e36a90c8707aa88c02cfc9682981c49a4255edee7e7abb721aa1ac63ef11&" width="400" alt="Imagem da visão geral de projetos e tecnologias"></p>
+
+- Detalhes do projeto, o usuário pode conhecer mais projeto selecionado por meio do acompanhamento de cada processo, asssim ele pode ver as tecnologias utilizada em cada etapa, como também ver ele em execução, abrir o seu repositório entre outras opções:
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288482371783491604/image.png?ex=66f55838&is=66f406b8&hm=3edfda1e8f86ffb39c9d3ff35d479f5cf2de7b335b488ffbc11ec6dd98869b13&" width="400" alt=""></p>
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288482571285696584/image.png?ex=66f55867&is=66f406e7&hm=dbff0a9e8d5110f36e34daf73c32efaaeddfabdff11425a7ddf4df6445c309e0&" width="400" alt=""></p>
+
+- Projetos cientificos, caso o usuário tenha interresse em conhecer mais sobre os projetos cientificos desenvolvidos por Marcos Sobral, temos está seção, onde contém os principais artigos e projetos desenvolvidos no momentos:
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288484252467593320/image.png?ex=66f559f8&is=66f40878&hm=90e9dfa869bca27e8633cbba0ff9e9acdc15d883ceb65936e41754997a84acca&" width="400" alt=""></p>
+
+## Imagens das páginas do sistema disponível apenas para o administrador do portifólio:
+
+- Tela de login
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288484993383006321/image.png?ex=66f55aa9&is=66f40929&hm=3ae9b554271d030b53c5dbffb962512b1726377a0c529310ba2d00ce430825a8&"></p>
+
+- Tela de gerenciamento de Carrossel
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288485303857713173/image.png?ex=66f55af3&is=66f40973&hm=fda0ba46f41897fc5cf3e848c5e548f6f9f6c8ca15b7be4d5fadc1ca8a4c1922&"></p>
+
+- Tela de gerenciamento das Tecnologias
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288485552731197461/image.png?ex=66f55b2e&is=66f409ae&hm=90c301b6606b13c5426774f89d582e06199339fee0acbf2a03264ef90c0e420d&"></p>
+
+- Tela de gerenciamento de Projetos Cientificos
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288485863352700928/image.png?ex=66f55b78&is=66f409f8&hm=e5679928f7293bad4de7d90ceb68a0ff35497ca56dcc501090496b60054bf515&"></p>
+
+- Tela de gerenciamento de Projetos
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288486192589049930/image.png?ex=66f55bc7&is=66f40a47&hm=bf8ee6bf08470eb08930941be7bad4260e9f8f02decfa5e8c054117c019450f2&"></p>
+
+- Tela de gerenciamento dos Processos do projeto
+<p align="center"><img src="https://cdn.discordapp.com/attachments/760519228011970600/1288486615227830302/image.png?ex=66f55c2b&is=66f40aab&hm=049e0cff25c48260fbbbdd033f7aac04efa13adccb0f9b4b2523645b4c1590e4&"></p>
 
 # Caso tenha interesse em como realizar a criação de um projeto Laravel utilizando Docker:
 
