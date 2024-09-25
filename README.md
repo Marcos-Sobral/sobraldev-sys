@@ -8,22 +8,17 @@ O sobraldev é um portifólio de projetos automatizado, assim é possível geren
 
 <ul>
   <li>Laravel: 10.10</li>
-  <li>Composer: 2.5.8/li>
-  <li>PHP: 8.1/li>
-  <li>Livewire: 3.4/li>
-  <li>Tinker: 2.8/li>
+  <li>Composer: 2.5.8</li>
+  <li>PHP: 8.1</li>
+  <li>Livewire: 3.4</li>
+  <li>Tinker: 2.8</li>
   <li>Bibliotecas: Bootstrap e Tailwind</li>
-  <li>Windows: 11/li>
+  <li>Windows: 11</li>
 </ul>
 
 # Caso tenha interesse em como realizar a criação de um projeto Laravel utilizando Docker:
 
 As instruções de instalação estão disponíveis para ambos sistemas: [Windows](#instalação-em-windows) e [Linux](#instalação-em-linux)
-# Tecnologias Utilizadas
-- [Laravel](https://laravel.com)
-  - [PHP](https://www.php.net)
-  - [Mysql](https://www.mysql.com)
-  - [Laradock](https://laradock.io)
 
 # Instalação em Windows
 <details>
