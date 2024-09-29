@@ -10,7 +10,11 @@ class Tecnologias extends Component
     public $tecnologias;
     public function mount()
     {
-        $this->tecnologias = Tecnologia::all(); // Busca todas as tecnologias
+        // Consulta para contar as tecnologias mais usadas
+        $this->tecnologias = Tecnologia::withCount('processos')
+        ->orderBy('processos_count', 'desc')
+        ->take(10)
+        ->get();
     }
     
     public function render()
