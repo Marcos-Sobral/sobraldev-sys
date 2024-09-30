@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('summary')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
             $table->foreignId('users_perfil_id')->nullable()->constrained('perfil','perfil_id')->onDelete('cascade');
+            $table->foreignId('users_education_id')->nullable()->constrained('education_users','education_id')->onDelete('cascade');
             $table->boolean('is_admin')->default(false);
         });
     }
@@ -29,10 +32,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Remove a chave estrangeira antes de dropar a tabela users
+        /*// Remove a chave estrangeira antes de dropar a tabela users
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign(['users_perfil_id']);
         });
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['users_education_id']);
+        });*/
         Schema::dropIfExists('users');
     }
 };

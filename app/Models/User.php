@@ -50,6 +50,12 @@ class User extends Authenticatable
         return $this->belongsTo(Perfil::class, 'users_perfil_id', 'perfil_id');
     }    
 
+    public function Education()
+    {
+        return $this->hasMany(Education::class, 'users_education_id', 'id');
+         //um usuario tem varias educações
+    }    
+
     public function isAdmin()
     {
         return $this->is_admin;
