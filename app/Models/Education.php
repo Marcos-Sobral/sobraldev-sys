@@ -10,7 +10,7 @@ class Education extends Model
     use HasFactory;
 
     protected $table = "education_users";
-    protected $primaryKey = 'education_user_id';
+    protected $primaryKey = 'education_id';
 
     protected $fillable = [
         'education_institution',
@@ -24,7 +24,7 @@ class Education extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'users_education_id', 'id');
+        return $this->belongsTo(User::class, 'users_education_id', 'education_id');
         //A educação tem apenas um usuario
     }
 

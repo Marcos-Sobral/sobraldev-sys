@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('education_course')->nullable();
             $table->string('education_photo')->nullable();
             $table->string('education_modality')->nullable();
-            $table->string('education_andress')->nullable();
+            $table->string('education_address')->nullable();
             $table->date('education_start')->nullable();
             $table->date('education_end')->nullable();
             $table->timestamps();
