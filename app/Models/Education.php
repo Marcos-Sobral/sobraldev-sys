@@ -17,7 +17,7 @@ class Education extends Model
         'education_course',
         'education_photo',
         'education_modality',
-        'education_andress',
+        'education_address',
         'education_start',
         'education_end'
     ];
