@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\techController;
 use App\Http\Controllers\Admin\carrosselController;
+use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\projetoController;
 use App\Http\Controllers\Admin\processoController;
 use App\Http\Controllers\Admin\pj_cientificoController;
@@ -65,6 +66,16 @@ Route::middleware("auth",'admin')->prefix('/admin')->group(function(){
         Route::get('/editar/{id}',[pj_cientificoController::class, 'edit'])->name('admin.cientifico.edit');
         Route::put('/editar/{id}',[pj_cientificoController::class, 'update'])->name('admin.cientifico.update');
         Route::delete('/deletar/{id}',[pj_cientificoController::class, 'destroy'])->name('admin.cientifico.destroy');
+    });
+
+    //educacao
+    Route::prefix('/educacao')->group(function(){
+        Route::get('/', [EducationController::class, 'index'])->name('admin.education.index');
+        Route::get('/criar',[EducationController::class, 'create'])->name('admin.education.create');
+        Route::post('/criar',[EducationController::class, 'store'])->name('admin.education.store');
+        Route::get('/editar/{id}',[EducationController::class, 'edit'])->name('admin.education.edit');
+        Route::put('/editar/{id}',[EducationController::class, 'update'])->name('admin.education.update');
+        Route::delete('/deletar/{id}',[EducationController::class, 'destroy'])->name('admin.education.destroy');
     });
 
 });
