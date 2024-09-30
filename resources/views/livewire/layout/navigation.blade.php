@@ -76,6 +76,11 @@ new class extends Component
                             {{ __('Perfil') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('admin.education.index')" wire:navigate>
+                            {{ __('Educação') }}
+                        </x-dropdown-link>
+
+
                         <!-- Authentication -->
                         <button wire:click="logout" class="w-full text-start">
                             <x-dropdown-link>
