@@ -8,7 +8,7 @@
 
                     <div class="row">
                         @foreach ($educations as $education)
-
+                        
                             <div class="col-md-4 mb-4">
                                 <div class="card">
                                     @if ($education->education_photo)
