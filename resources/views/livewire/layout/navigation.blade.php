@@ -21,11 +21,14 @@ new class extends Component
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('principal') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
+                <!-- Botão para ocultar/exibir a sidebar -->
+                <div class="d-flex">
+                    <button @click="sidebarOpen = !sidebarOpen" class="p-2 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none inline-flex items-center justify-center rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path :class="{'hidden': sidebarOpen, 'inline-flex': ! sidebarOpen }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            <path :class="{'hidden': ! sidebarOpen, 'inline-flex': sidebarOpen }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
 
                 <!-- Navigation Links -->
@@ -72,18 +75,25 @@ new class extends Component
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile')" wire:navigate>
-                            {{ __('Perfil') }}
+                        <x-dropdown-link :href="route('profile')" class="flex items-center">
+                            <img src="{{ URL::asset('assets/img/icon/icons8-user-24.png') }}" class="mr-2">
+                            {{ __('Meu Perfil') }}
                         </x-dropdown-link>
 
                         <x-dropdown-link :href="route('admin.education.index')" wire:navigate>
                             {{ __('Educação') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('principal')" class="flex items-center">
+                            <img src="{{ URL::asset('assets/img/icon/icons8-group-50.png') }}" class="mr-2  w-6 h-6">
+                            {{ __('Modo cliente') }}
+                        </x-dropdown-link>
+
 
                         <!-- Authentication -->
                         <button wire:click="logout" class="w-full text-start">
-                            <x-dropdown-link>
+                            <x-dropdown-link class="flex items-center">
+                            <img src="{{ URL::asset('assets/img/icon/icons8-open-door-50.png') }}" class="mr-2 w-6 h-6">
                                 {{ __('Sair da conta') }}
                             </x-dropdown-link>
                         </button>
