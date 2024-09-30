@@ -19,7 +19,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased" x-data="{ sidebarOpen: true }">
+    <body class="font-sans antialiased" x-data="{ sidebarOpen: false }">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900 flex">
         <!-- Sidebar (controlado por Alpine.js) -->
             <div :class="sidebarOpen ? 'block' : 'hidden'" class="w-80">

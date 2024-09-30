@@ -12,8 +12,6 @@
         </div>
     </div>
 
-    <hr class="mb-6">
-
     <!-- Menus -->
     <nav class="mt-5">
         <a href="{{ route('dashboard') }}" class="flex align-items-center py-2 px-4 rounded hover:bg-gray-700 mt-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" >
