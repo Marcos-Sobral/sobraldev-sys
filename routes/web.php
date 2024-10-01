@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\projetoController;
 use App\Http\Controllers\Admin\processoController;
 use App\Http\Controllers\Admin\pj_cientificoController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 
 //User
@@ -77,6 +78,17 @@ Route::middleware("auth",'admin')->prefix('/admin')->group(function(){
         Route::put('/editar/{id}',[EducationController::class, 'update'])->name('admin.education.update');
         Route::delete('/deletar/{id}',[EducationController::class, 'destroy'])->name('admin.education.destroy');
     });
+
+    //educacao
+    Route::prefix('/user')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
+        Route::get('/criar',[UserController::class, 'create'])->name('admin.user.create');
+        Route::post('/criar',[UserController::class, 'store'])->name('admin.user.store');
+        Route::get('/editar/{id}',[UserController::class, 'edit'])->name('admin.user.edit');
+        Route::put('/editar/{id}',[UserController::class, 'update'])->name('admin.user.update');
+        Route::delete('/deletar/{id}',[UserController::class, 'destroy'])->name('admin.user.destroy');
+    });
+
 
 });
 
