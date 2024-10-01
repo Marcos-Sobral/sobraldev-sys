@@ -2,9 +2,14 @@
     <!-- Título da página atual -->
     <div class="p-3">
         <!-- Informações do usuário -->
-        <div class="flex items-center">
-            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-            <!-- <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->photo }}" alt="{{ Auth::user()->name }}"> -->
+        <div class="flex items-center justify-content-center">
+            @if (Auth::user()->photo)
+                <div class="">
+                    <img src="{{ asset('images/' . Auth::user()->photo) }}" class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200 rounded mt-2">
+                </div>
+            @else
+                <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+            @endif
             <div class="ml-3">
                 <p class="text-sm font-medium">{{ Auth::user()->name }}</p>
                 <p class="text-xs text-gray-400">Administrador</p>
@@ -122,7 +127,7 @@
             <div x-show="open" class="mt-2 space-y-2 pl-4">
                 @auth
 
-                <a href="{{ route('admin.education.index') }}" class="flex py-2 px-6 hover:bg-gray-700 rounded">
+                <a href="{{ route('admin.user.edit', Auth::user()->id) }}" class="flex py-2 px-6 hover:bg-gray-700 rounded">
                     <img src="{{ URL::asset('assets/img/icon/icons8-user-folder-50.png') }}" class="mr-2 w-6 h-6">
                     Dados Pessoais
                 </a>
