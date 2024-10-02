@@ -14,13 +14,13 @@
                         <div class="row">
                             <div class="col-md-4 mb-4">
                                 <x-input-label for="name" :value="__('Nome')" />
-                                <x-text-input id="name" class="block mt-1 w-full pl-4" type="text" name="name" value="{{ old('name', $user->name) }}" required autofocus />
+                                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ old('name', $user->name) }}" required autofocus />
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
 
                             <div class="col-md-4 mb-4">
                                 <x-input-label for="email" :value="__('Email')" />
-                                <x-text-input id="email" class="block mt-1 w-full pl-4" type="text" name="email" value="{{ old('email', $user->email) }}" required />
+                                <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" value="{{ old('email', $user->email) }}" required />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
 
@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <x-input-label for="photo" :value="__('Foto da Educação')" />
+                            <x-input-label for="photo" :value="__('Foto do usuário')" />
                             <x-text-input id="photo" class="block mt-1 w-full" type="file" name="photo" />
                             <x-input-error :messages="$errors->get('photo')" class="mt-2" />
 
