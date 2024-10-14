@@ -14,6 +14,13 @@
                             <x-text-input id="carrossel_titulo" class="block mt-1 w-full" type="text" name="carrossel_titulo" value="{{ old('carrossel_titulo', $carrossel->carrossel_titulo) }}" autofocus />
                             <x-input-error :messages="$errors->get('carrossel_titulo')" class="mt-2" />
                         </div>
+                        
+                        <!-- Descrição do Carrossel -->
+                        <div class="mb-4">
+                            <x-input-label for="carrossel_descricao" :value="__('Descrição do Carrossel')" />
+                            <x-text-input id="carrossel_descricao" class="block mt-1 w-full" type="text" name="carrossel_descricao" value="{{ old('carrossel_descricao', $carrossel->carrossel_descricao) }}" autofocus />
+                            <x-input-error :messages="$errors->get('carrossel_descricao')" class="mt-2" />
+                        </div>
 
                         <div class="mb-4">
                             <x-input-label for="carrossel_img" :value="__('Imagem')" />
