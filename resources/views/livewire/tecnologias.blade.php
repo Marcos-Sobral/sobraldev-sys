@@ -3,12 +3,12 @@
     $cores = ['primary', 'success', 'danger', 'warning', 'info', 'dark'];
 @endphp
 
-<div class="container-fluid justify-content-center">
+<section class="container-fluid justify-content-center h-100 p-5 col">
     <div class="text-center mb-2">
-        <h2 id="Meus_projetos" class="featurette-heading fw-normal lh-1">Tecnologias que utilizo</h2>
+        <h2 id="Meus_projetos" class="featurette-heading fw-bold lh-1 color-purple">Tecnologias que utilizo</h2>
     </div>
 
-    <div class="d-flex gap-md-3 justify-content-around py-5">
+    <section class="d-flex gap-md-3 justify-content-around py-5">
         <div class="row">
             @foreach ($tecnologias as $index => $tecnologia)
                 @php
@@ -23,5 +23,5 @@
                 </div>
             @endforeach
         </div>
-    </div>
-</div>
+    </section>
+</section>
