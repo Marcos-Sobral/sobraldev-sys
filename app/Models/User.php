@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function Education()
     {
-        return $this->hasMany(Education::class, 'users_education_id', 'id');
+        return $this->hasMany(Education::class, 'education_id', 'users_education_id');
          //um usuario tem varias educações
     }    
 
