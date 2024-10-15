@@ -16,6 +16,7 @@
     <main>
         
         <livewire:sobremim />
+        <livewire:educacao />
         <livewire:carrossell />
         <livewire:tecnologias />
         <livewire:projetos />

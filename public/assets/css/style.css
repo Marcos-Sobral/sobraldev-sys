@@ -94,7 +94,8 @@ main h1 {
   font-size: 72px;
 }
 main h2 {
-  font-size: 40px;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 main h2 span {
   color: #8c51fe;

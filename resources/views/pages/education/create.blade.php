@@ -25,9 +25,9 @@
                             </div>
     
                             <div class="col-md-4 mb-4">
-                                <x-input-label for="education_modality" :value="__('Modalidade')" />
-                                <x-text-input id="education_modality" class="block mt-1 w-full pl-2" type="text" name="education_modality" value="{{ old('education_modality') }}" required />
-                                <x-input-error :messages="$errors->get('education_modality')" class="mt-2" />
+                                <x-input-label for="education_description" :value="__('Descrição')" />
+                                <x-text-input id="education_description" class="block mt-1 w-full pl-2" type="text" name="education_description" value="{{ old('education_description') }}" required />
+                                <x-input-error :messages="$errors->get('education_description')" class="mt-2" />
                             </div>
                         </div>
 
