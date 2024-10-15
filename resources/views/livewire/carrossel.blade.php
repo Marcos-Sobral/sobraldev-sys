@@ -1,9 +1,9 @@
 <!-- resources/views/components/carousel.blade.php -->
-<div class="container-fluid mt-5">
+<section id="noticias" class="container-fluid mt-5">
   <div class="text-center mb-5">
-    <h2 id="Meus_projetos" class="featurette-heading fw-bold lh-1 color-purple">Últimas atualizações</h2>
+    <h2 class="featurette-heading fw-bold lh-1 color-purple">Últimas atualizações</h2>
   </div>
-  <div class="row">
+  <section class="row">
     <div class="col-sm-12">
       <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -66,5 +66,5 @@
         @endif
       </div>
     </div>
-  </div>
-</div>
+  </section>
+</section>

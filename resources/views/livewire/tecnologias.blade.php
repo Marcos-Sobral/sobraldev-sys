@@ -5,7 +5,7 @@
 
 <section class="container-fluid justify-content-center h-100 p-5 col">
     <div class="text-center mb-2">
-        <h2 id="Meus_projetos" class="featurette-heading fw-bold lh-1 color-purple">Tecnologias que utilizo</h2>
+        <h2 id="minhas_tech" class="featurette-heading fw-bold lh-1 color-purple">Tecnologias que utilizo</h2>
     </div>
 
     <section class="d-flex gap-md-3 justify-content-around py-5">

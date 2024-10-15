@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul id="nav_item" class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#Meus_projetos">Últimas atualizações</a>
+            <a class="nav-link" href="#noticias">Últimas atualizações</a>
           </li>
 
           <li class="nav-item dropdown">
