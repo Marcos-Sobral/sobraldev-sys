@@ -7,7 +7,6 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="{{ URL::asset('assets/img/logo/favicon.ico') }}"  type="image/x-icon">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}">
     <script src="{{ URL::asset('assets/js/headerAlterColor.js') }}"></script>
     <title>Marcos Sobral: Desenvolvedor Full Stack - PHP, LARAVEL, ANGULAR, Java, Spring</title>
 </head>
