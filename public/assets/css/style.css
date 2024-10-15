@@ -53,17 +53,6 @@ header ul li a:hover {
   background-color: #8c51fe;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-  width: 5%; /* Aumenta a área clicável das setas */
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: #8c51fe; /* Define a cor das setas */
-  border-radius: 50%; /* Torna as setas circulares */
-}
-
 .dropdown-item {
   color: #8c51fe !important;
 }
@@ -173,5 +162,50 @@ footer {
   main .profile-image img {
     height: 30vh;
     border-radius: 150px;
+  }
+}
+.carousel-control-prev,
+.carousel-control-next {
+  width: 10%; /* Aumenta o espaço dos botões de navegação */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #8c51fe;
+  border-radius: 50%;
+}
+
+.carousel-indicators li {
+  background-color: #8c51fe; /* Cor dos botões de navegação */
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+  margin: 10px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-indicators .active {
+  opacity: 1; /* Maior destaque para o botão ativo */
+}
+
+.carousel-indicators {
+  position: static;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.carousel-item {
+  text-align: center; /* Centraliza o conteúdo */
+}
+
+/* Adiciona uma pequena margem no mobile */
+@media (max-width: 820px) {
+  .carousel-item {
+    padding: 0 15px;
+  }
+  .carousel-indicators {
+    margin-top: 15px;
   }
 }/*# sourceMappingURL=style.css.map */
