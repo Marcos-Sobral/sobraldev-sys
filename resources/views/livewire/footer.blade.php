@@ -1,4 +1,4 @@
-<footer class="container-fluid bg-dark">
+<footer class="container-fluid">
       <footer class="row row-cols-1 row-cols-sm-3 p-5 border-top">
         <div class="col mb-3">
           <ul class="list-unstyled">
