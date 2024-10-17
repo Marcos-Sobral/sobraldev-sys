@@ -57,6 +57,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Education::class, 'education_id', 'users_education_id');
          //um usuario tem varias educações
+    }  
+
+    public function Experience()
+    {
+        return $this->hasMany(Experience::class, 'experience_id', 'users_experience_id');
+         //um usuario tem varias educações
     }    
 
     public function isAdmin()

@@ -135,7 +135,7 @@
                     <img src="{{ URL::asset('assets/img/icon/icons8-study-50.png') }}" class="mr-2 w-6 h-6">
                     Formação acadêmica
                 </a>
-                <a href="#" class="flex py-2 px-6 hover:bg-gray-700 rounded">
+                <a href="{{ route('admin.experience.index') }}" class="flex py-2 px-6 hover:bg-gray-700 rounded">
                     <img src="{{ URL::asset('assets/img/icon/icons8-work-50.png') }}" class="mr-2 w-6 h-6">
                     Trabalhos
                 </a>

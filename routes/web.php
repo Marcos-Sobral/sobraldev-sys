@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\techController;
 use App\Http\Controllers\Admin\carrosselController;
 use App\Http\Controllers\Admin\EducationController;
+use App\Http\Controllers\Admin\ExperienceController;
+use App\Http\Controllers\Admin\ExperienceControllr;
 use App\Http\Controllers\Admin\projetoController;
 use App\Http\Controllers\Admin\processoController;
 use App\Http\Controllers\Admin\pj_cientificoController;
@@ -79,7 +81,17 @@ Route::middleware("auth",'admin')->prefix('/admin')->group(function(){
         Route::delete('/deletar/{id}',[EducationController::class, 'destroy'])->name('admin.education.destroy');
     });
 
-    //educacao
+    //Experiencia
+    Route::prefix('/experiencia')->group(function(){
+        Route::get('/', [ExperienceController::class, 'index'])->name('admin.experience.index');
+        Route::get('/criar',[ExperienceController::class, 'create'])->name('admin.experience.create');
+        Route::post('/criar',[ExperienceController::class, 'store'])->name('admin.experience.store');
+        Route::get('/editar/{id}',[ExperienceController::class, 'edit'])->name('admin.experience.edit');
+        Route::put('/editar/{id}',[ExperienceController::class, 'update'])->name('admin.experience.update');
+        Route::delete('/deletar/{id}',[ExperienceController::class, 'destroy'])->name('admin.experience.destroy');
+    });
+
+    //USER
     Route::prefix('/user')->group(function(){
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/criar',[UserController::class, 'create'])->name('admin.user.create');
