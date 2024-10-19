@@ -69,14 +69,6 @@
                     <img src="{{ URL::asset('assets/img/icon/icons8-science-folder-64.png') }}" class="mr-2 w-6 h-6">
                     Projetos Cientificos
                 </a>
-                <a href="{{ route('admin.tech.index') }}" class="flex py-2 px-6 hover:bg-gray-700 rounded">
-                    <img src="{{ URL::asset('assets/img/icon/icons8-tech-50.png') }}" class="mr-2 w-6 h-6">
-                    Tecnologias
-                </a>
-                <a href="{{ route('admin.carrossel.index') }}" class="flex py-2 px-6 hover:bg-gray-700 rounded">
-                    <img src="{{ URL::asset('assets/img/icon/icons8-gallery-80.png') }}" class="mr-2 w-6 h-6">
-                    Carrossel
-                </a>
                 <a href="#" class="flex py-2 px-6 hover:bg-gray-700 rounded">
                     <img src="{{ URL::asset('assets/img/icon/icons8-analyzing-skill-50.png') }}" class="mr-2 w-6 h-6">
                     Relatório de conteúdo
