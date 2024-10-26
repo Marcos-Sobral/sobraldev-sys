@@ -30,7 +30,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="https://www.linkedin.com/in/marcossobral-ti" target="_blank" class="nav-link fs-6">LinkedIn <i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/marcossobraldev/" target="_blank" class="nav-link fs-6">LinkedIn <i class="fab fa-linkedin"></i></a>
           </li>
         </ul>
       </div>
